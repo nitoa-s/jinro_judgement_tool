@@ -1,14 +1,23 @@
 <template>
   <div class = 'characters__area'>
-    <character-button character-file-name = 'アーニー.png'></character-button>
-    <character-button character-file-name = 'アンナ.png'></character-button>
-    <character-button character-file-name = 'エマ.png'></character-button>
+    <div v-for = "path in filePath" :key = "path">
+      <character-button :character-file-name = "path"></character-button>
+    </div>
   </div>
 </template>
 
 <script>
 import CharacterButton from './CharacterButton'
 export default {
+  data () {
+    return {
+      filePath: [
+        'アーニー.png',
+        'アンナ.png',
+        'エマ.png'
+      ]
+    }
+  },
   components: {
     'character-button': CharacterButton
   }
