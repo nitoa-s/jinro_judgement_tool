@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class = 'head__bar'>
+
+    </div>
     <characters></characters>
   </div>
 </template>
@@ -22,10 +25,9 @@ body {
   background-color:darkgrey;
 }
 
-
-.join__character__area {
-  width: 200px;
-  height: 100px;
+.head__bar {
+  width: 100%;
+  height: 30px;
   background-color: aqua;
 }
 </style>
