@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <div class = 'join__character__area'>
-      <joinCharacter></joinCharacter>
-    </div>
+    <characters></characters>
   </div>
 </template>
 
 <script>
 import joinCharacter from './components/JoinCharacter'
+import Characters from './components/character/Characters'
 export default {
   name: 'App',
   components: {
+    'characters': Characters,
     'joinCharacter': joinCharacter
   }
 }
