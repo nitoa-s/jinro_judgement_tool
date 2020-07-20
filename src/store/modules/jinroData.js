@@ -21,10 +21,14 @@ const actions = {
 const mutations = {
   addMember (state, member) {
     state.jinroMembers.push(member);
+    localStorage.setItem('jinroMembers', JSON.stringify(state.jinroMembers));
   },
   removeMember (state, member) {
     const index = state.jinroMembers.indexOf(member);
-    if (index >= 0) state.jinroMembers.splice(index, 1);
+    if (index >= 0) {
+      state.jinroMembers.splice(index, 1);
+      localStorage.setItem('jinroMembers', JSON.stringify(state.jinroMembers));
+    }
   }
 }
 export default {
