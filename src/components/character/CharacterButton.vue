@@ -1,6 +1,6 @@
 <template>
-  <button class = 'character__button' :class = "{ active: isActive }" @click = 'onclick'>
-    <img class = 'character__image' :src = "require(`@/assets/characters/${characterFileName}`)" />
+  <button class = 'character__button' :class = "{ active: isActive }" @click.left = 'join' @click.right = 'remove'>
+    <img class = 'character__image' :src = "require(`@/assets/characters/${characterFileName}.png`)" />
   </button>
 </template>
 
@@ -8,13 +8,29 @@
 export default {
   data () {
     return {
-      isActive: false
+      name: this.characterFileName,
+      isActive: false,
     }
   },
   props: [ 'characterFileName' ],
   methods: {
-    onclick () {
-      this.isActive = true;
+    join () {
+      const jinroMembers = this.$store.getters.jinroMembers;
+      const index = jinroMembers.indexOf(this.name);
+      console.log(jinroMembers.join(","));
+      if (index == -1) {
+        this.isActive = true;
+        this.$store.dispatch('addMember', {member: this.name});
+      }
+    },
+    remove () {
+      const jinroMembers = this.$store.getters.jinroMembers;
+      const index = jinroMembers.indexOf(this.name);
+      console.log(jinroMembers.join(","));
+      if (index >= 0) {
+        this.isActive = false;
+        this.$store.dispatch('removeMember', {member: this.name});
+      }
     }
   }
 }

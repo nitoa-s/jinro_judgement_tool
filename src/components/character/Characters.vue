@@ -1,7 +1,7 @@
 <template>
   <div class = 'characters__area'>
-    <div v-for = "path in filePath" :key = "path">
-      <character-button :character-file-name = "path"></character-button>
+    <div v-for = "character in characters" :key = "character">
+    <character-button :character-file-name = "character"></character-button>
     </div>
   </div>
 </template>
@@ -9,13 +9,9 @@
 <script>
 import CharacterButton from './CharacterButton'
 export default {
-  data () {
-    return {
-      filePath: [
-        'アーニー.png',
-        'アンナ.png',
-        'エマ.png'
-      ]
+  computed: {
+    characters() {
+      return this.$store.getters.characters;
     }
   },
   components: {
