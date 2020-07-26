@@ -1,7 +1,7 @@
 <template>
   <div class = 'characters__area'>
     <div v-for = "character in characters" :key = "character">
-    <character-button :character-file-name = "character"></character-button>
+    <character-button :character-name = "character"></character-button>
     </div>
   </div>
 </template>

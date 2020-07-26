@@ -20,14 +20,16 @@ const actions = {
 
 const mutations = {
   addMember (state, member) {
-    state.jinroMembers.push(member);
-    localStorage.setItem('jinroMembers', JSON.stringify(state.jinroMembers));
+    const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
+    jinroMembers.push(member);
+    localStorage.setItem('jinroMembers', JSON.stringify(jinroMembers));
   },
   removeMember (state, member) {
-    const index = state.jinroMembers.indexOf(member);
+    const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
+    const index = jinroMembers.indexOf(member);
     if (index >= 0) {
-      state.jinroMembers.splice(index, 1);
-      localStorage.setItem('jinroMembers', JSON.stringify(state.jinroMembers));
+      jinroMembers.splice(index, 1);
+      localStorage.setItem('jinroMembers', JSON.stringify(jinroMembers));
     }
   }
 }
