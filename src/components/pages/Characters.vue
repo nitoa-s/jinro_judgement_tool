@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import CharacterButton from './CharacterButton'
+import CharacterButton from '../modules/CharacterButton'
 export default {
   computed: {
     characters() {
