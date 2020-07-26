@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <div class = 'head__bar'>
-
+      <router-link to='/characters'>キャラクター</router-link>
     </div>
-    <characters></characters>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import joinCharacter from './components/JoinCharacter'
-import Characters from './components/character/Characters'
+import Characters from './components/pages/Characters'
 export default {
   name: 'App',
   components: {
