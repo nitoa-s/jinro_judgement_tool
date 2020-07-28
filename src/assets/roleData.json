@@ -1,0 +1,14 @@
+[
+  {
+    "name": "市民",
+    "image": "@/assets/roles/市民.png"
+  },
+  {
+    "name": "人狼",
+    "image": "@/assets/roles/人狼.png"
+  },
+  {
+    "name": "占い師",
+    "image": "@/assets/roles/占い師.png"
+  }
+]
