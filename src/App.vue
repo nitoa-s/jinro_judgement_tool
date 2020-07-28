@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div class = 'head__bar'>
-      <router-link to='/characters'>キャラクター</router-link>
+      <router-link to = '/characters'>キャラクター設定</router-link>
+      <router-link to = '/roles'>役職設定</router-link>
     </div>
     <router-view/>
   </div>
