@@ -10,13 +10,8 @@
 
 <script>
 import joinCharacter from './components/JoinCharacter'
-import Characters from './components/pages/Characters'
 export default {
-  name: 'App',
-  components: {
-    'characters': Characters,
-    'joinCharacter': joinCharacter
-  }
+  name: 'App'
 }
 </script>
 
