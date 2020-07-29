@@ -1,14 +1,22 @@
 [
   {
-    "name": "市民",
-    "image": "@/assets/roles/市民.png"
+    "id": 1,
+    "name": "市民"
   },
   {
-    "name": "人狼",
-    "image": "@/assets/roles/人狼.png"
+    "id": 2,
+    "name": "人狼"
   },
   {
-    "name": "占い師",
-    "image": "@/assets/roles/占い師.png"
+    "id": 3,
+    "name": "占い師"
+  },
+  {
+    "id": 4,
+    "name": "狩人"
+  },
+  {
+    "id": 5,
+    "name": "狂人"
   }
 ]
