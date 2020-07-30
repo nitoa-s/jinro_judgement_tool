@@ -1,22 +1,470 @@
 [
   {
     "id": 1,
-    "name": "市民"
+    "name": "村人陣営",
+    "roles": [
+      {
+        "id": 1,
+        "name": "市民",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 2,
+        "name": "占い師",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 3,
+        "name": "霊能者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 4,
+        "name": "狩人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 5,
+        "name": "双子",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 6,
+        "name": "怪盗",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 7,
+        "name": "猫又",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 8,
+        "name": "賢者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 9,
+        "name": "罠師",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 10,
+        "name": "パン屋",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 11,
+        "name": "市長",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 12,
+        "name": "逃亡者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 13,
+        "name": "赤ずきん",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 14,
+        "name": "貴族",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 15,
+        "name": "奴隷",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 16,
+        "name": "狼憑き",
+        "fortune": "黒",
+        "medium": "白"
+      },
+      {
+        "id": 17,
+        "name": "独裁者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 18,
+        "name": "わら人形",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 19,
+        "name": "女王",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 20,
+        "name": "呪われし者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 21,
+        "name": "魔女",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 22,
+        "name": "番犬",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 23,
+        "name": "聖職者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 24,
+        "name": "巫女",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 25,
+        "name": "暗殺者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 26,
+        "name": "生霊",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 27,
+        "name": "医者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 28,
+        "name": "長老",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 29,
+        "name": "病人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 30,
+        "name": "人狼キラー",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 31,
+        "name": "占い師の弟子",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 32,
+        "name": "偽占い師",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 33,
+        "name": "プリンセス",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 34,
+        "name": "饒舌な狩人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 35,
+        "name": "名探偵",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 36,
+        "name": "新聞配達",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 37,
+        "name": "ギャンブラー",
+        "fortune": "白",
+        "medium": "白"
+      }
+    ]
   },
   {
     "id": 2,
-    "name": "人狼"
+    "name": "人狼陣営",
+    "roles": [
+      {
+        "id": 38,
+        "name": "人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 39,
+        "name": "大狼",
+        "fortune": "白",
+        "medium": "黒"
+      },
+      {
+        "id": 40,
+        "name": "賢狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 41,
+        "name": "強欲な人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 42,
+        "name": "蘇る人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 43,
+        "name": "能ある人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 44,
+        "name": "饒舌な人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 45,
+        "name": "狂人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 46,
+        "name": "狂信者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 47,
+        "name": "ささやく狂人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 48,
+        "name": "妖術師",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 49,
+        "name": "黒猫",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 50,
+        "name": "サイコ",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 51,
+        "name": "狼少年",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 52,
+        "name": "反逆の狂人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 53,
+        "name": "一途な人狼",
+        "fortune": "黒",
+        "medium": "黒"
+      },
+      {
+        "id": 54,
+        "name": "一匹狼",
+        "fortune": "黒",
+        "medium": "黒"
+      }
+    ]
   },
   {
     "id": 3,
-    "name": "占い師"
+    "name": "妖狐陣営",
+    "roles": [
+      {
+        "id": 55,
+        "name": "妖狐",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 56,
+        "name": "子狐",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 57,
+        "name": "背徳者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 58,
+        "name": "背信者",
+        "fortune": "白",
+        "medium": "白"
+      }
+    ]
   },
   {
     "id": 4,
-    "name": "狩人"
-  },
-  {
-    "id": 5,
-    "name": "狂人"
+    "name": "その他",
+    "roles": [
+      {
+        "id": 59,
+        "name": "恋人",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 60,
+        "name": "ゾンビ",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 61,
+        "name": "コウモリ男",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 62,
+        "name": "サンタ",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 63,
+        "name": "ぶた男",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 64,
+        "name": "てるてる坊主",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 65,
+        "name": "殉教者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 66,
+        "name": "キューピット",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 67,
+        "name": "ゾンビマニア",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 68,
+        "name": "赤鼻のトナカイ",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 69,
+        "name": "悪女",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 70,
+        "name": "天邪鬼",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 71,
+        "name": "純愛者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 72,
+        "name": "復讐者",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 73,
+        "name": "酔っぱらい",
+        "fortune": "白",
+        "medium": "白"
+      },
+      {
+        "id": 74,
+        "name": "疫病神",
+        "fortune": "白",
+        "medium": "白"
+      }
+    ]
   }
 ]

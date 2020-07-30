@@ -1,9 +1,10 @@
 <template>
 	<div class = 'role__area'>
-		<roleButton
-			v-for = 'role in roleData'
-			:key = 'role.id'
-			:roleName = 'role.name'></roleButton>
+		<div class = 'camp__area' v-for = 'camp in roleData' :key = 'camp.id'>
+			<p> {{ camp.name }} </p>
+			<roleButton v-for = 'data in camp.roles' :key = 'data.id' :roleData = 'data' :camp = 'camp.name'>
+			</roleButton>
+		</div>
 	</div>
 </template>
 
