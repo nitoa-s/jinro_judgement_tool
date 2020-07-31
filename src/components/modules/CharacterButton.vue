@@ -1,61 +1,80 @@
 <template>
-  <button class = 'character__button' :class = "{ active: isActive }" @click.left = 'join' @click.right = 'remove'>
-    <img class = 'character__image' :src = "require(`@/assets/characters/${characterName}.png`)" />
-  </button>
+  <div class = 'character_button' @click.left = 'join' @click.right.prevent = 'remove'>
+    <img :class = '{ character_image: true, active: isActive }' :src = 'imagePath'/>
+    <p class = 'character_name'> {{ characterData.name }} </p>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      name: this.characterName,
+      imageIndex: 0,
       isActive: false
     }
   },
-  props: [ 'characterName' ],
-  methods: {
-    join () {
-      const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
-      const index = jinroMembers.indexOf(this.name);
-      if (index == -1) {
-        this.isActive = true;
-        this.$store.dispatch('addMember', {member: this.name});
-      }
-    },
-    remove () {
-      const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
-      const index = jinroMembers.indexOf(this.name);
-      if (index >= 0) {
-        this.isActive = false;
-        this.$store.dispatch('removeMember', {member: this.name});
-      }
+  computed: {
+    imagePath () {
+      return require(`@/assets/characters/${this.characterData.name}/${this.characterData.image[this.imageIndex]}`)
     }
   },
-  created() {
-    const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
-    const index = jinroMembers.indexOf(this.name);
-    this.isActive = index >= 0 ? true : false;
+  props: ['characterData'],
+  methods: {
+    join () {
+      if( !this.isActive ) {
+        this.isActive = true
+      } else {
+        this.imageIndex++
+        if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
+      }
+      this.$store.dispatch('addMember', { member: {name: this.characterData.name, imageIndex: this.imageIndex} })
+    },
+    remove () {
+      this.isActive = false
+      this.$store.dispatch('removeMember', { member: this.characterData.name })
+      this.imageIndex = 0
+    }
+  },
+  created () {
+    const jinroMembers = this.$store.getters.jinroMembers
+    for( let index = 0; index < jinroMembers.length; index++)
+      if( jinroMembers[index].name === this.characterData.name) {
+        this.isActive = true
+        this.imageIndex = jinroMembers[index].imageIndex
+      }
   }
 }
 </script>
 
 <style scoped>
-.character__button {
-  width: 100px;
-  height: 100px;
-  border: 0;
-  padding: 0;
+
+.character_button {
+  position: relative;
+  display: inline-block;
 }
 
-.character__image {
-  width: 100%;
-  height: 100%;
+.character_image {
+  margin: 1px;
+  width: 100px;
+  height: 100px;
+  user-select: none;
 }
 
 .active {
-  border: solid 1px red;
+  outline: solid 2px red;
 }
 .active:focus {
   outline: none;
+}
+
+.character_name {
+  position: absolute;
+  width: 100%;
+  color: white;
+  top: 50px;
+  text-align: center;
+  font: 16px;
+  font-weight: bold;
+  pointer-events: none;
 }
 </style>
