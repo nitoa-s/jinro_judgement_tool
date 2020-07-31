@@ -32,6 +32,11 @@ export default {
       if( this.count > 0 ) this.count--
       this.$store.dispatch('removeRole', { roleName: this.roleData.name })
     }
+  },
+  created () {
+    const roles = this.$store.getters.jinroRoles
+    for(let index = 0; index < roles.length; index++)
+      if( roles[index].name === this.roleData.name ) this.count++
   }
 }
 </script>
