@@ -5,6 +5,11 @@
         <img class = 'member_image' v-for = '(character, index) in characterRow' :key = 'index' :src = 'imagePath(character.name, character.imageIndex)'/>
       </div>
     </div>
+    <div class = 'role_area'>
+      <div class = 'role_button' v-for = '(role, index) in roles' :key = 'index'>
+        {{ role.name }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,6 +20,11 @@ export default {
     return {
       characterData,
       characters: this.$store.getters.jinroMembers,
+      roles: this.$store.getters.jinroRoles.sort( (a,b) => {
+        if(a.id>b.id) return 1;
+        if(a.id < b.id) return -1;
+        return 0;
+      }),
       sliceNum: 5
     }
   },
@@ -62,5 +72,19 @@ export default {
   width: 80px;
   height: 80px;
   user-select: none;
+}
+
+.role_area {
+  display: flex;
+}
+
+.role_button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #dd0000;
+  border: outset 4px #ffd700;
+  color: #FFF;
+  border-radius: 3px;
 }
 </style>
