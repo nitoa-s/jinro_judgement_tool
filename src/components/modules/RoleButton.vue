@@ -59,10 +59,13 @@ export default {
 }
 
 .role_name {
-  color: white;
   position: absolute;
-  top: 80px;
+  width: 100%;
+  color: white;
+  top: 110px;
   text-align: center;
-  font: 12px;
+  font: 16px;
+  font-weight: bold;
+  pointer-events: none;
 }
 </style>
