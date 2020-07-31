@@ -1,38 +1,36 @@
 <template>
-  <button class = 'role_button' @click.left = 'join' @click.right = 'remove'>
-      <img class = 'role__image' :src = "require(`@/assets/roles/${camp}/${roleData.name}.png`)" />
-  </button>
+  <div class = 'role_button' @click.left = 'join' @click.right.prevent = 'remove'>
+    <img class = 'role_image' :src = 'imagePath' />
+    <div class = 'role_count'> {{ count }} </div>
+    <div class = 'role_name'> {{ roleData.name }} </div>
+  </div>
+
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      count: 0
+    }
+  },
   props: [
     'roleData',
     'camp'
   ],
+  computed: {
+    imagePath () {
+      return require(`@/assets/roles/${this.camp}/${this.roleData.name}.png`)
+    }
+  },
   methods: {
-    join() {
-      var roles = JSON.parse(localStorage.getItem('roles'));
-      if( roles === null ) {
-        roles = [];
-        roles.push(this.roleData);
-        localStorage.setItem('roles', JSON.stringify(roles));
-      } else {
-        for( var index = 0; index < roles.length ; index ++ )
-          if( roles[index].name === this.roleData.name ) return;
-        roles.push(this.roleData);
-        localStorage.setItem('roles', JSON.stringify(roles));
-      }
+    join () {
+      this.count++
+      this.$store.dispatch('addRole', { roleData: this.roleData })
     },
-    remove() {
-      var roles = JSON.parse(localStorage.getItem('roles'));
-      if( roles !== null) {
-        for( var index = 0; index < roles.length ; index ++ )
-          if( roles[index].name === this.roleData.name ) {
-            roles.splice(index, 1);
-            localStorage.setItem('roles', JSON.stringify(roles));
-          }
-      }
+    remove () {
+      if( this.count > 0 ) this.count--
+      this.$store.dispatch('removeRole', { roleName: this.roleData.name })
     }
   }
 }
@@ -40,14 +38,31 @@ export default {
 
 <style scoped>
 .role_button {
+  position: relative;
   display: inline-block;
-  padding: 0;
-  border: 0;
-  height: auto;
+  margin: 4px 2px;
+  user-select: none;
 }
-.role__image {
+
+.role_image {
   width: 100px;
   height: auto;
-  object-fit: contain;
+  margin: 2px;
+}
+
+.role_count {
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font: 12px;
+}
+
+.role_name {
+  color: white;
+  position: absolute;
+  top: 80px;
+  text-align: center;
+  font: 12px;
 }
 </style>

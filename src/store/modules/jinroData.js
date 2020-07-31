@@ -15,8 +15,11 @@ const actions = {
   removeMember({ commit }, { member }) {
     commit('removeMember', member)
   },
-  selfMember({ commit }, { memberName }){
-    commit('selfMember', memberName)
+  addRole({ commit }, { roleData }) {
+    commit('addRole', roleData)
+  },
+  removeRole({ commit }, { roleName }) {
+    commit('removeRole', roleName)
   }
 }
 
@@ -34,6 +37,16 @@ const mutations = {
     for(let index = 0; index < state.jinroMembers.length; index++)
       if( state.jinroMembers[index].name === member)
         state.jinroMembers.splice(index, 1)
+  },
+  addRole (state, roleData) {
+    state.jinroRoles.push(roleData)
+  },
+  removeRole (state, roleName) {
+    for(let index = 0; index < state.jinroRoles.length; index++)
+      if( state.jinroRoles[index].name === roleName) {
+        state.jinroRoles.splice(index, 1)
+        break
+      }
   }
 }
 export default {
