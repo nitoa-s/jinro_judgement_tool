@@ -19,7 +19,7 @@ export default {
 <style>
 body {
   margin: 0;
-  background-color:darkgrey;
+  background:radial-gradient(circle at center, #006600, #003300)
 }
 
 .head__bar {

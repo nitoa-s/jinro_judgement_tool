@@ -1,0 +1,273 @@
+[
+  {
+    "id": 1,
+    "name": "アーニー",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "アンナ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "エマ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "エリック",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "カミラ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "クリス",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "ゲイル",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "サンドラ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "ジェイ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "ジェシカ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "ショーン",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "スーザン",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "ソフィア",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "チャン",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "トーマス",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "ニック",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "バニラ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "ヒュー",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "ビル",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "フェイ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "フランク",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "フレディ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "マイク",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "マリアンヌ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "ミカ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "メアリー",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "メリル",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "リリアン",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "ローラ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  },
+    {
+    "id": 30,
+    "name": "ロディ",
+    "image": [
+      "通常.jpg",
+      "SP1.jpg",
+      "SP2.jpg"
+    ]
+  }
+
+]
