@@ -6,7 +6,6 @@ const state = {
 const getters = {
   jinroMembers: state => state.jinroMembers,
   jinroRoles: state => state.jinroRoles
-  
 }
 
 const actions = {
@@ -20,17 +19,19 @@ const actions = {
 
 const mutations = {
   addMember (state, member) {
-    const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
-    jinroMembers.push(member);
-    localStorage.setItem('jinroMembers', JSON.stringify(jinroMembers));
+    let exist = false;
+    for(let index = 0; index < state.jinroMembers.length; index++)
+      if( state.jinroMembers[index].name === member.name) {
+        exist = true
+        state.jinroMembers[index].imageIndex = member.imageIndex
+      }
+    if( !exist ) state.jinroMembers.push(member)
+    console.log(state.jinroMembers)
   },
   removeMember (state, member) {
-    const jinroMembers = JSON.parse(localStorage.getItem('jinroMembers'));
-    const index = jinroMembers.indexOf(member);
-    if (index >= 0) {
-      jinroMembers.splice(index, 1);
-      localStorage.setItem('jinroMembers', JSON.stringify(jinroMembers));
-    }
+    for(let index = 0; index < state.jinroMembers.length; index++)
+      if( state.jinroMembers[index].name === member)
+        state.jinroMembers.slice(index, 1)
   }
 }
 export default {
