@@ -10,7 +10,8 @@ export default {
   data () {
     return {
       imageIndex: 0,
-      isActive: false
+      isActive: false,
+      self: false
     }
   },
   computed: {
@@ -27,7 +28,7 @@ export default {
         this.imageIndex++
         if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
       }
-      this.$store.dispatch('addMember', { member: {name: this.characterData.name, imageIndex: this.imageIndex} })
+      this.$store.dispatch('addMember', { member: {name: this.characterData.name, imageIndex: this.imageIndex, self: false} })
     },
     remove () {
       this.isActive = false
@@ -51,6 +52,7 @@ export default {
 .character_button {
   position: relative;
   display: inline-block;
+  margin: 4px 2px;
 }
 
 .character_image {
