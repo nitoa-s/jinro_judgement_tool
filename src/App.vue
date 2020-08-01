@@ -17,14 +17,26 @@ export default {
 </script>
 
 <style>
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
+  width: 100%;
+  height: 100%;
   background:radial-gradient(circle at center, #006600, #003300)
+}
+
+#app {
+  width: 100%;
+  height: 100%;
 }
 
 .head__bar {
   width: 100%;
   height: 30px;
-  background-color: aqua;
+  background-color: #D7EEFF;
 }
 </style>

@@ -1,14 +1,19 @@
 <template>
-  <div class = 'top_area'>
-    <div class = 'join_member_area'>
-      <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-        <img class = 'member_image' v-for = '(character, index) in characterRow' :key = 'index' :src = 'imagePath(character.name, character.imageIndex)'/>
+  <div class = 'top_page'>
+    <div class = 'jinro_info'>
+      <div class = 'join_member_area'>
+        <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
+          <img class = 'member_image' v-for = '(character, index) in characterRow' :key = 'index' :src = 'imagePath(character.name, character.imageIndex)'/>
+        </div>
+      </div>
+      <div class = 'role_area'>
+        <button class = 'role_button' v-for = '(role, index) in roles' :key = 'index'>
+          {{ role.name }}
+        </button>
       </div>
     </div>
-    <div class = 'role_area'>
-      <div class = 'role_button' v-for = '(role, index) in roles' :key = 'index'>
-        {{ role.name }}
-      </div>
+    <div class = 'role_info'>
+
     </div>
   </div>
 </template>
@@ -25,7 +30,8 @@ export default {
         if(a.id < b.id) return -1;
         return 0;
       }),
-      sliceNum: 5
+      sliceNum: 5,
+      activeRole: null
     }
   },
   computed: {
@@ -46,45 +52,68 @@ export default {
         if( this.characterData[index].name === memberName )
           imageName = this.characterData[index].image[imageIndex]
       return require(`@/assets/characters/${memberName}/${imageName}`)
+    },
+    setActiveRole (roleName) {
+      this.activeRole = roleName
     }
   }
 }
 </script>
 
 <style scoped>
-.top_area {
+.top_page {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   padding: 10px;
 }
 
+.jinro_info {
+  width: 420px;
+  height: 100%;
+  background-color: rosybrown;
+}
+
+.role_info {
+  width: 200px;
+  background-color: royalblue;
+}
 .join_member_area {
-  padding: 0 5px;
+  width: 100%;
+  counter-reset: member_row;
+  height: 340px;
 }
 
 .member_row_area {
   display: flex;
-  margin: 5px 0;
-  height: 80px;
-  flex-direction: row;
+  margin: 1px 0;
+  counter-increment: member_row;
 }
 
 .member_image {
-  margin: 1px;
+  margin: 0 1px;
   width: 80px;
   height: 80px;
-  user-select: none;
 }
 
 .role_area {
-  display: flex;
+  display: inline;
 }
 
 .role_button {
+  margin: 1px;
+  position: relative;
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 4px 8px;
   text-decoration: none;
-  background: #dd0000;
-  border: outset 4px #ffd700;
   color: #FFF;
-  border-radius: 3px;
+  background: #e00;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -10px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px rgb(245, 179, 25);
+}
+
+.role_button:active {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 </style>
