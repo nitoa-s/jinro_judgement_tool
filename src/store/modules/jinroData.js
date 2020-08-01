@@ -31,7 +31,10 @@ const mutations = {
         exist = true
         state.jinroMembers[index].imageIndex = member.imageIndex
       }
-    if( !exist ) state.jinroMembers.push(member)
+    if( !exist ) {
+      member.co = null
+      state.jinroMembers.push(member)
+    }
   },
   removeMember (state, member) {
     for(let index = 0; index < state.jinroMembers.length; index++)
