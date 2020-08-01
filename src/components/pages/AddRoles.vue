@@ -8,7 +8,7 @@
 				{{ camp.name }}
 			</div>
 			<div class = 'roles_row_area' v-for = '(row, index) in groupRoles(camp.roles)' :key = 'index'>
-				<roleButton v-for = 'role in row' :key = 'role.id' :roleData = 'role' :camp = 'camp.name'></roleButton>
+				<join-role-button v-for = 'role in row' :key = 'role.id' :roleData = 'role' :camp = 'camp.name'></join-role-button>
 			</div>
 		</div>
 	</div>
@@ -16,7 +16,7 @@
 
 <script>
 import roles from '@/assets/roleData.json'
-import RoleButton from '@/components/modules/RoleButton'
+import joinRoleButton from '@/components/modules/JoinRoleButton'
 export default {
 	data () {
 		return {
@@ -25,7 +25,7 @@ export default {
 		}
 	},
 	components: {
-		'roleButton': RoleButton
+		'join-role-button': joinRoleButton
 	},
 	computed: {
 		joinRoleCount () {

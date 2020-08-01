@@ -29,12 +29,9 @@ const mutations = {
     for(let index = 0; index < state.jinroMembers.length; index++)
       if( state.jinroMembers[index].name === member.name) {
         exist = true
-        state.jinroMembers[index].imageIndex = member.imageIndex
+        state.jinroMembers[index].imageFileName = member.imageFileName
       }
-    if( !exist ) {
-      member.co = null
-      state.jinroMembers.push(member)
-    }
+    if( !exist ) state.jinroMembers.push(member)
   },
   removeMember (state, member) {
     for(let index = 0; index < state.jinroMembers.length; index++)

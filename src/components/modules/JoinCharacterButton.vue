@@ -28,7 +28,7 @@ export default {
         this.imageIndex++
         if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
       }
-      this.$store.dispatch('addMember', { member: {name: this.characterData.name, imageIndex: this.imageIndex, self: false} })
+      this.$store.dispatch('addMember', { member: {id: this.characterData.id, name: this.characterData.name, imageFileName: this.characterData.image[this.imageIndex], co: ''} })
     },
     remove () {
       this.isActive = false
@@ -37,12 +37,11 @@ export default {
     }
   },
   created () {
-    const jinroMembers = this.$store.getters.jinroMembers
-    for( let index = 0; index < jinroMembers.length; index++)
-      if( jinroMembers[index].name === this.characterData.name) {
-        this.isActive = true
-        this.imageIndex = jinroMembers[index].imageIndex
-      }
+    const jinroMembers = this.$store.getters.jinroMembers.filter( (member) => member.name === this.characterData.name )
+    if(jinroMembers.length > 0) {
+      this.isActive = true
+      this.imageIndex = this.characterData.image.indexOf(jinroMembers[0].imageFileName)
+    }
   }
 }
 </script>
