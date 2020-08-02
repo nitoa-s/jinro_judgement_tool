@@ -45,6 +45,7 @@ export default {
   --color: white;
   margin: 0;
   font-size: 13px;
+  font-weight: 800;
   color: var(--color)
 }
 
