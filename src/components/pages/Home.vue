@@ -75,6 +75,7 @@ export default {
   width: 420px;
   height: 100%;
   background-color: rosybrown;
+  vertical-align: top;
 }
 
 .role_info {
