@@ -11,7 +11,9 @@
       </div>
     </div>
     <div class = 'role_info'>
-      <role-info></role-info>
+      <p class = 'title'>役職情報と襲撃結果</p>
+      <result-table :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
+      <info-table v-for = 'roleName in roleInfoGroups' :key = 'roleName' :maxDay = 'maxDay' :roleName = 'roleName' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
     </div>
   </div>
 </template>
@@ -19,7 +21,8 @@
 <script>
 import memberButton from '@/components/modules/MemberButton'
 import roleButton from '@/components/modules/RoleButton'
-import roleInfo from '@/components/modules/RoleInfo'
+import resultTable from '@/components/modules/ResultTable'
+import infoTable from '@/components/modules/InfoTable'
 export default {
   data () {
     return {
@@ -40,7 +43,8 @@ export default {
   components: {
     'member-button': memberButton,
     'role-button': roleButton,
-    'role-info': roleInfo
+    'result-table': resultTable,
+    'info-table': infoTable
   },
   computed: {
     groupCharacters () {
@@ -51,6 +55,15 @@ export default {
         groupedArray.push(this.characters.slice(groupedFirstIndex, groupedFirstIndex + this.sliceNum))
       }
       return groupedArray
+    },
+    roleInfoGroups () {
+      const infoGroups = this.roles.map( (role) => {
+        if (role.info) return role.name
+      })
+      return infoGroups.filter(Boolean).filter(function (x, i, self) { return self.indexOf(x) === i })
+    },
+    maxDay () {
+      return this.characters.length === 0 ? 0 : Math.floor((this.characters.length - 1) / 2)
     }
   },
   methods: {
@@ -95,5 +108,9 @@ export default {
   display: inline;
 }
 
+.title {
+  margin: 0;
+  color: white;
+}
 
 </style>
