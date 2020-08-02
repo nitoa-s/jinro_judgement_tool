@@ -3,11 +3,11 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :activeRoleName = 'activeRole'/>
+          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive'/>
         </div>
       </div>
       <div class = 'role_area'>
-        <role-button v-for = '(role, index) in roles' :key = 'index' :roleName = 'role.name' @setRole = 'setActiveRole' />
+        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' @click = 'setClickActive' />
       </div>
     </div>
     <div class = 'role_info'>
@@ -34,6 +34,7 @@ export default {
         return 0;
       }),
       sliceNum: 5,
+      clickActive: {},
       activeRole: null
     }
   },
@@ -54,9 +55,8 @@ export default {
     }
   },
   methods: {
-    setActiveRole (roleName) {
-      this.activeRole = roleName
-      console.log(this.activeRole)
+    setClickActive (clickActive) {
+      this.clickActive = clickActive
     }
   }
 }
@@ -64,7 +64,6 @@ export default {
 
 <style scoped>
 .top_page {
-  display: inline-block;
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -74,24 +73,23 @@ export default {
   display: inline-block;
   width: 420px;
   height: 100%;
-  background-color: rosybrown;
   vertical-align: top;
 }
 
 .role_info {
   display: inline-block;
+  margin: 5px 0 0;
   height: 100%;
   background-color: royalblue;
 }
 .join_member_area {
   width: 100%;
-  height: 340px;
 }
 
 .member_row_area {
   display: flex;
-  height: 80px;
-  padding-bottom: 2px;
+  height: 120px;
+  margin-bottom: 5px;
 }
 
 .role_area {

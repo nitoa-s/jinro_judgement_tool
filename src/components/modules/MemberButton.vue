@@ -1,7 +1,7 @@
 <template>
   <div class = 'join_member' @click.left = 'click'>
     <img class = 'member_image' :src = 'imagePath' />
-    <p class = 'co_text'> {{ characterData.co }} </p>
+    <p class = 'co_text' v-show = 'characterData.co'> {{ characterData.co }}CO</p>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   props: [
     'characterData',
-    'activeRoleName'
+    'clickActive'
   ],
   computed: {
     imagePath () {
@@ -18,7 +18,9 @@ export default {
   },
   methods: {
     click () {
-      if( this.activeRoleName != null) this.characterData.co = `${this.activeRoleName}CO`
+      if( this.clickActive.kind == 'role') {
+        this.characterData.co = this.clickActive.value.name
+      }
     }
   }
 }
@@ -26,24 +28,24 @@ export default {
 
 <style scoped>
 .join_member {
-  position: relative;
   display: inline-block;
-  margin: 0 1px;
+  margin: 2px;
+  width: 80px;
+  height: 100px;
+  text-align: center;
+  font-size: 12px;
 }
 
 .member_image {
-  width: 80px;
+  display: block;
   height: 80px;
 }
 
 .co_text {
-position: absolute;
-  width: 100%;
-  color: white;
-  top: 30px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  pointer-events: none;
+  --color: white;
+  margin: 0;
+  font-size: 13px;
+  color: var(--color)
 }
+
 </style>

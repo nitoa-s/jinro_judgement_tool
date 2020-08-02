@@ -1,15 +1,15 @@
 <template>
   <button class = 'role_button' @click.left = 'click'>
-    {{ roleName }}
+    {{ role.name }}
   </button>
 </template>
 
 <script>
 export default {
-  props: [ 'roleName' ],
+  props: [ 'role' ],
   methods: {
     click () {
-      this.$emit('setRole', this.roleName)
+      this.$emit('click', {kind: 'role', value: this.role})
     }
   }
 }
