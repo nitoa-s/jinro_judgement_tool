@@ -13,13 +13,15 @@
         "id": 2,
         "name": "占い師",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "info": true
       },
       {
         "id": 3,
         "name": "霊能者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "info": true
       },
       {
         "id": 4,
@@ -49,7 +51,8 @@
         "id": 8,
         "name": "賢者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "info": true
       },
       {
         "id": 9,
