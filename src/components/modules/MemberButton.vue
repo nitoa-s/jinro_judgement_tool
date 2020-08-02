@@ -1,7 +1,7 @@
 <template>
-  <div class = 'join_member' @click.left = 'click'>
-    <img class = 'member_image' :src = 'imagePath' />
-    <p class = 'co_text' v-show = 'characterData.co'> {{ characterData.co }}CO</p>
+  <div class = 'join_member' @click.left = 'click' @click.right.prevent = 'nonActive'>
+    <img :class = '{member_image: true, active: active}' :src = 'imagePath' />
+    <p class = 'co_text' v-show = 'characterData.co'> {{ comingOut }}CO</p>
   </div>
 </template>
 
@@ -14,12 +14,25 @@ export default {
   computed: {
     imagePath () {
       return require(`@/assets/characters/${this.characterData.name}/${this.characterData.imageFileName}`)
+    },
+    active () {
+      return this.clickActive !== null && this.clickActive.kind === 'character' && this.clickActive.value.name === this.characterData.name
+    },
+    comingOut () {
+      return  this.$store.getters.jinroMembers.filter( (member) => this.characterData.name === member.name)[0].co
     }
   },
   methods: {
     click () {
-      if( this.clickActive.kind == 'role') {
+      if( this.clickActive === null || this.clickActive.kind === 'character') {
+        this.$emit('setActive', { kind: 'character', value: this.characterData})
+      } else if( this.clickActive.kind == 'role') {
         this.characterData.co = this.clickActive.value.name
+      }
+    },
+    nonActive () {
+      if( this.clickActive !== null && this.active ) {
+        this.$emit('setActive', null)
       }
     }
   }
@@ -41,6 +54,9 @@ export default {
   height: 80px;
 }
 
+.active {
+  outline: solid 2px red;
+}
 .co_text {
   --color: white;
   margin: 0;

@@ -1,15 +1,38 @@
 <template>
-  <button class = 'role_button' @click.left = 'click'>
+  <button :class = '{role_button: true, active: active}' @click.left = 'click' @click.right.prevent = 'nonActive'>
     {{ role.name }}
   </button>
 </template>
 
 <script>
 export default {
-  props: [ 'role' ],
+  data () {
+    return {
+      kind: 'role'
+    }
+  },
+  props: [
+    'role',
+    'clickActive'
+  ],
+  computed: {
+    active () {
+      return this.clickActive !== null && this.clickActive.kind === this.kind && this.clickActive.value.name === this.role.name
+    }
+  },
   methods: {
     click () {
-      this.$emit('click', {kind: 'role', value: this.role})
+      if( this.clickActive === null || this.clickActive.kind === this.kind ) {
+      this.$emit('setActive', {kind: this.kind, value: this.role})
+      } else if( this.clickActive.kind === 'character' ) {
+        const member = this.$store.getters.jinroMembers.filter( (member) => this.clickActive.value.name === member.name)
+        member[0].co = this.role.name
+      }
+    },
+    nonActive () {
+      if( this.clickActive !== null && this.active ) {
+        this.$emit('setActive', null)
+      }
     }
   }
 }
@@ -29,7 +52,7 @@ export default {
   border: solid 2px rgb(245, 179, 25);
 }
 
-.role_button:active {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+.active {
+  background-color: orange;
 }
 </style>
