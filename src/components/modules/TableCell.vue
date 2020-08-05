@@ -18,6 +18,7 @@ export default {
   },
   props: [
     'clickActive',
+    'tableName',
     'rowName',
     'columnIndex'
   ],
@@ -37,7 +38,14 @@ export default {
     },
     click () {
       if( this.clickActive === null || this.clickActive.kind === 'info') {
-        this.$emit('setActive', {kind: this.kind, value: {rowName: this.rowName, columnIndex: this.columnIndex}})
+        this.$emit('setActive', {
+          kind: this.kind,
+          value: {
+            tableName: this.tableName,
+            rowName: this.rowName,
+            columnIndex: this.columnIndex
+          }
+        })
       } else if( this.clickActive.kind === 'character' ) {
         this.setCharacterData(this.clickActive.value)
       }

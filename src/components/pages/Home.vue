@@ -68,8 +68,9 @@ export default {
       this.clickActive = clickActive
     },
     setInfo (characterData) {
-      const refName = ['襲撃', '処刑'].includes(this.clickActive.value.rowName) ? 'result' : this.clickActive.value.rowName
-      this.$refs[refName].setCharacterData(characterData)
+      const refName = this.clickActive.value.tableName
+      const childComponent = this.clickActive.value.tableName === 'result' ? this.$refs[refName] : this.$refs[refName][0]
+      childComponent.setCharacterData(characterData)
     }
   }
 }

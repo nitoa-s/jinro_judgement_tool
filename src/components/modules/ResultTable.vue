@@ -8,7 +8,7 @@
       </tr>
       <tr v-for = "(rowName, index) in tableRows" :key = 'index'>
         <td class = 'table_cell'> {{ rowName }}</td>
-        <table-cell :ref = 'rowName' v-for = 'n in maxDay + 1' :key = 'n' :clickActive = 'clickActive' :rowName = 'rowName' :columnIndex = 'n' @setActive = 'setActive'></table-cell>
+        <table-cell :ref = 'rowName' v-for = 'n in maxDay + 1' :key = 'n' :clickActive = 'clickActive' tableName = 'result' :rowName = 'rowName' :columnIndex = 'n' @setActive = 'setActive'></table-cell>
       </tr>
     </table>
   </div>

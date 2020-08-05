@@ -8,7 +8,7 @@
       </tr>
       <tr v-for = "(character, index) in tableRows" :key = 'index'>
         <td class = 'table_cell'> <img class = 'cell_image' :src = 'imagePath(character.name, character.imageFileName)' /></td>
-        <table-cell v-for = 'n in maxDay' :key = 'n' :clickActive = 'clickActive' :rowName = 'character.name' :columnIndex = 'n' @setActive = 'setActive'></table-cell>
+        <table-cell :ref = 'character.name' v-for = 'n in maxDay' :key = 'n' :clickActive = 'clickActive' :tableName = 'roleName' :rowName = 'character.name' :columnIndex = 'n' @setActive = 'setActive'></table-cell>
       </tr>
     </table>
   </div>
@@ -36,6 +36,12 @@ export default {
     },
     setActive (clickActive) {
       this.$emit('setActive', clickActive)
+    },
+    setCharacterData (characterData) {
+      const rowName = this.clickActive.value.rowName
+      const index = this.clickActive.value.columnIndex - 1
+      this.$refs[rowName][index].setCharacterData(characterData)
+
     }
   }
 }
