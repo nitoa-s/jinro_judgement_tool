@@ -32,6 +32,8 @@ export default {
         this.$emit('setActive', { kind: 'character', value: this.characterData})
       } else if( this.clickActive.kind == 'role') {
         this.characterData.co = this.clickActive.value.name
+      } else if( this.clickActive.kind === 'info') {
+        this.$emit('setInfo', this.characterData)
       }
     },
     nonActive () {

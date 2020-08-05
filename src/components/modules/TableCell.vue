@@ -39,9 +39,7 @@ export default {
       if( this.clickActive === null || this.clickActive.kind === 'info') {
         this.$emit('setActive', {kind: this.kind, value: {rowName: this.rowName, columnIndex: this.columnIndex}})
       } else if( this.clickActive.kind === 'character' ) {
-        if( this.characterData !== null && (this.rowName === '襲撃' || this.rowName === '処刑')) this.characterData.death = false
-        this.characterData = this.clickActive.value
-        if( this.rowName === '襲撃' || this.rowName === '処刑' ) this.characterData.death = true
+        this.setCharacterData(this.clickActive.value)
       }
     },
     rightClick () {
@@ -59,6 +57,16 @@ export default {
         this.$emit('setActive', null)
       }
     },
+    setCharacterData (characterData) {
+      if( this.characterData && this.isResultTable() && this.characterData.death )
+        this.characterData.death = false
+      this.characterData = characterData
+      if ( this.isResultTable() )
+        this.characterData.death = true
+    },
+    isResultTable () {
+      return ['襲撃', '処刑'].includes(this.rowName)
+    }
   }
 }
 </script>

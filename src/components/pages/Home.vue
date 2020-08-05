@@ -3,7 +3,7 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' />
+          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
         </div>
       </div>
       <div class = 'role_area'>
@@ -67,6 +67,10 @@ export default {
     setClickActive (clickActive) {
       this.clickActive = clickActive
     },
+    setInfo (characterData) {
+      const refName = ['襲撃', '処刑'].includes(this.clickActive.value.rowName) ? 'result' : this.clickActive.value.rowName
+      this.$refs[refName].setCharacterData(characterData)
+    }
   }
 }
 </script>
