@@ -4,13 +4,13 @@
       <p> 参加人数：{{ joinNum }}人 </p>
     </div>
     <div class = 'row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-      <character-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character'></character-button>
+      <join-character-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character'></join-character-button>
     </div>
   </div>
 </template>
 
 <script>
-import CharacterButton from '../modules/CharacterButton'
+import joinCharacterButton from '../modules/JoinCharacterButton'
 import characterData from '@/assets/characterData.json'
 export default {
   data () {
@@ -34,7 +34,7 @@ export default {
     }
   },
   components: {
-    'character-button': CharacterButton
+    joinCharacterButton
   }
 }
 </script>

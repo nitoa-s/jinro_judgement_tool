@@ -35,8 +35,8 @@ body {
 }
 
 .head__bar {
-  width: 100%;
+  top: 0;
   height: 30px;
-  background-color: #D7EEFF;
+  background-color: rgb(209, 214, 240);
 }
 </style>

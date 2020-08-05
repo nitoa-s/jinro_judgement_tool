@@ -3,27 +3,30 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <img class = 'member_image' v-for = '(character, index) in characterRow' :key = 'index' :src = 'imagePath(character.name, character.imageIndex)'/>
+          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
         </div>
       </div>
       <div class = 'role_area'>
-        <button class = 'role_button' v-for = '(role, index) in roles' :key = 'index'>
-          {{ role.name }}
-        </button>
+        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' />
       </div>
+      <input class = 'memo' type = 'text'>
     </div>
     <div class = 'role_info'>
-
+      <p class = 'title'>役職情報と襲撃結果</p>
+      <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
+      <info-table :ref = 'roleName' v-for = 'roleName in roleInfoGroups' :key = 'roleName' :maxDay = 'maxDay' :roleName = 'roleName' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
     </div>
   </div>
 </template>
 
 <script>
-import characterData from '@/assets/characterData.json'
+import memberButton from '@/components/modules/MemberButton'
+import roleButton from '@/components/modules/RoleButton'
+import resultTable from '@/components/modules/ResultTable'
+import infoTable from '@/components/modules/InfoTable'
 export default {
   data () {
     return {
-      characterData,
       characters: this.$store.getters.jinroMembers,
       roles: this.$store.getters.jinroRoles.sort( (a,b) => {
         if(a.id>b.id) return 1;
@@ -31,8 +34,14 @@ export default {
         return 0;
       }),
       sliceNum: 5,
-      activeRole: null
+      clickActive: null,
     }
+  },
+  components: {
+    'member-button': memberButton,
+    'role-button': roleButton,
+    'result-table': resultTable,
+    'info-table': infoTable
   },
   computed: {
     groupCharacters () {
@@ -43,18 +52,25 @@ export default {
         groupedArray.push(this.characters.slice(groupedFirstIndex, groupedFirstIndex + this.sliceNum))
       }
       return groupedArray
+    },
+    roleInfoGroups () {
+      const infoGroups = this.roles.map( (role) => {
+        if ( role.info ) return role.name
+      })
+      return infoGroups.filter(Boolean).filter(function (x, i, self) { return self.indexOf(x) === i })
+    },
+    maxDay () {
+      return this.characters.length === 0 ? 0 : Math.floor((this.characters.length - 1) / 2)
     }
   },
   methods: {
-    imagePath (memberName, imageIndex) {
-      let imageName = null
-      for( let index = 0; index < this.characterData.length; index++)
-        if( this.characterData[index].name === memberName )
-          imageName = this.characterData[index].image[imageIndex]
-      return require(`@/assets/characters/${memberName}/${imageName}`)
+    setClickActive (clickActive) {
+      this.clickActive = clickActive
     },
-    setActiveRole (roleName) {
-      this.activeRole = roleName
+    setInfo (characterData) {
+      const refName = this.clickActive.value.tableName
+      const childComponent = this.clickActive.value.tableName === 'result' ? this.$refs[refName] : this.$refs[refName][0]
+      childComponent.setCharacterData(characterData)
     }
   }
 }
@@ -62,58 +78,46 @@ export default {
 
 <style scoped>
 .top_page {
-  display: inline-block;
   width: 100%;
   height: 100%;
   padding: 10px;
 }
 
 .jinro_info {
+  margin: 5px 20px 0 0;
+  display: inline-block;
   width: 420px;
   height: 100%;
-  background-color: rosybrown;
+  vertical-align: top;
 }
 
 .role_info {
-  width: 200px;
-  background-color: royalblue;
+  display: inline-block;
+  margin: 5px 0 0;
+  height: 100%;
 }
 .join_member_area {
   width: 100%;
-  counter-reset: member_row;
-  height: 340px;
 }
 
 .member_row_area {
   display: flex;
-  margin: 1px 0;
-  counter-increment: member_row;
+  height: 120px;
+  margin-bottom: 5px;
 }
 
-.member_image {
-  margin: 0 1px;
-  width: 80px;
-  height: 80px;
+.memo {
+  padding: 10px;
+  width: 100%;
+  height: 200px;
 }
-
 .role_area {
   display: inline;
 }
 
-.role_button {
-  margin: 1px;
-  position: relative;
-  display: inline-block;
-  padding: 4px 8px;
-  text-decoration: none;
-  color: #FFF;
-  background: #e00;
-  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -10px 0 rgba(0, 0, 0, 0.05);
-  font-weight: bold;
-  border: solid 2px rgb(245, 179, 25);
+.title {
+  margin: 0;
+  color: white;
 }
 
-.role_button:active {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
-}
 </style>
