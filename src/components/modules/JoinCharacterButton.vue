@@ -28,7 +28,15 @@ export default {
         this.imageIndex++
         if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
       }
-      this.$store.dispatch('addMember', { member: {id: this.characterData.id, name: this.characterData.name, imageFileName: this.characterData.image[this.imageIndex], co: ''} })
+      this.$store.dispatch('addMember', { 
+        member: {
+          id: this.characterData.id,
+          name: this.characterData.name,
+          imageFileName: this.characterData.image[this.imageIndex],
+          co: '',
+          death: false
+        }
+      })
     },
     remove () {
       this.isActive = false
@@ -70,11 +78,12 @@ export default {
 
 .character_name {
   position: absolute;
+  margin: 0;
   width: 100%;
   color: white;
-  top: 50px;
+  bottom: 5px;
   text-align: center;
-  font: 16px;
+  font-size: 12px;
   font-weight: bold;
   pointer-events: none;
 }

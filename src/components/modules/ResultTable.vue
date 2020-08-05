@@ -1,7 +1,7 @@
 <template>
   <div class = 'table_info'>
     <p class = 'table_title'>結果</p>
-    <table border="1">
+    <table class = 'table' border="1">
       <tr>
         <td></td>
         <td v-for = 'n in maxDay + 1' :key = 'n'> {{ n }}日目</td>
@@ -47,6 +47,10 @@ export default {
   margin: 0;
   color: white;
   font-size: 12px;
+}
+
+.table {
+  background: white;
 }
 
 .table_cell {

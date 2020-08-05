@@ -9,11 +9,12 @@
       <div class = 'role_area'>
         <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' />
       </div>
+      <input class = 'memo' type = 'text'>
     </div>
     <div class = 'role_info'>
       <p class = 'title'>役職情報と襲撃結果</p>
-      <result-table :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
-      <info-table v-for = 'roleName in roleInfoGroups' :key = 'roleName' :maxDay = 'maxDay' :roleName = 'roleName' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
+      <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
+      <info-table :ref = 'roleName' v-for = 'roleName in roleInfoGroups' :key = 'roleName' :maxDay = 'maxDay' :roleName = 'roleName' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
     </div>
   </div>
 </template>
@@ -26,11 +27,7 @@ import infoTable from '@/components/modules/InfoTable'
 export default {
   data () {
     return {
-      characters: this.$store.getters.jinroMembers.sort( (a,b) => {
-        if(a.id>b.id) return 1;
-        if(a.id < b.id) return -1;
-        return 0;
-      }),
+      characters: this.$store.getters.jinroMembers,
       roles: this.$store.getters.jinroRoles.sort( (a,b) => {
         if(a.id>b.id) return 1;
         if(a.id < b.id) return -1;
@@ -58,7 +55,7 @@ export default {
     },
     roleInfoGroups () {
       const infoGroups = this.roles.map( (role) => {
-        if (role.info) return role.name
+        if ( role.info ) return role.name
       })
       return infoGroups.filter(Boolean).filter(function (x, i, self) { return self.indexOf(x) === i })
     },
@@ -69,7 +66,7 @@ export default {
   methods: {
     setClickActive (clickActive) {
       this.clickActive = clickActive
-    }
+    },
   }
 }
 </script>
@@ -82,6 +79,7 @@ export default {
 }
 
 .jinro_info {
+  margin: 5px 20px 0 0;
   display: inline-block;
   width: 420px;
   height: 100%;
@@ -92,7 +90,6 @@ export default {
   display: inline-block;
   margin: 5px 0 0;
   height: 100%;
-  background-color: royalblue;
 }
 .join_member_area {
   width: 100%;
@@ -104,6 +101,11 @@ export default {
   margin-bottom: 5px;
 }
 
+.memo {
+  padding: 10px;
+  width: 100%;
+  height: 200px;
+}
 .role_area {
   display: inline;
 }

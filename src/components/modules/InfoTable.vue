@@ -1,7 +1,7 @@
 <template>
   <div class = 'table_info'>
     <p class = 'table_title'>{{ roleName }}</p>
-    <table border="1">
+    <table class = 'table' border="1">
       <tr>
         <td>CO</td>
         <td v-for = 'n in maxDay' :key = 'n'> {{ n + 1 }}日目</td>
@@ -51,6 +51,10 @@ export default {
   margin: 0;
   color: white;
   font-size: 12px;
+}
+
+.table {
+  background: white;
 }
 
 .table_cell {

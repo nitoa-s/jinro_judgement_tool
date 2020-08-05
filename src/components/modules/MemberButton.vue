@@ -1,7 +1,11 @@
 <template>
-  <div class = 'join_member' @click.left = 'click' @click.right.prevent = 'nonActive'>
-    <img :class = '{member_image: true, active: active}' :src = 'imagePath' />
-    <p class = 'co_text' v-show = 'characterData.co'> {{ comingOut }}CO</p>
+  <div class = 'join_member' @click.left = 'click' @click.right.prevent = 'nonActive' @dblclick =  'deleteCO'>
+    <div class = 'member'>
+      <img :class = '{member_image: true, active: active}' :src = 'imagePath' />
+      <p class = 'member_name'> {{ characterData.name }} </p>
+      <p v-if = 'characterData.death' :class = '{retire: characterData.death}'>×</p>
+    </div>
+    <p class = 'co_text' v-show = 'characterData.co' > {{ comingOut }}CO</p>
   </div>
 </template>
 
@@ -34,6 +38,9 @@ export default {
       if( this.clickActive !== null && this.active ) {
         this.$emit('setActive', null)
       }
+    },
+    deleteCO () {
+      this.characterData.co = ''
     }
   }
 }
@@ -41,6 +48,7 @@ export default {
 
 <style scoped>
 .join_member {
+  position: relative;
   display: inline-block;
   margin: 2px;
   width: 80px;
@@ -49,13 +57,28 @@ export default {
   font-size: 12px;
 }
 
+.member {
+  position: relative;
+  height: 80px;
+}
+
 .member_image {
-  display: block;
   height: 80px;
 }
 
 .active {
   outline: solid 2px red;
+}
+.member_name {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  color: white;
+  bottom: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
 }
 .co_text {
   --color: white;
@@ -63,6 +86,15 @@ export default {
   font-size: 13px;
   font-weight: 800;
   color: var(--color)
+}
+
+.retire {
+  position: absolute;
+  margin: 0;
+  color: red;
+  font-size: 100px;
+  top: -40px;
+  left: 0;
 }
 
 </style>
