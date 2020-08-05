@@ -41,6 +41,7 @@ export default {
       const rowName = this.clickActive.value.rowName
       const index = this.clickActive.value.columnIndex - 1
       this.$refs[rowName][index].setCharacterData(characterData)
+      this.setActive(null)
 
     }
   }
