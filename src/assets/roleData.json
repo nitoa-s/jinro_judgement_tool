@@ -301,55 +301,64 @@
         "id": 45,
         "name": "狂人",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 46,
         "name": "狂信者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 47,
         "name": "ささやく狂人",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 48,
         "name": "妖術師",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 49,
         "name": "黒猫",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 50,
         "name": "サイコ",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 51,
         "name": "狼少年",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 52,
         "name": "反逆の狂人",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF00CC"
       },
       {
         "id": 53,
         "name": "一途な人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 54,
