@@ -25,8 +25,7 @@ export default {
       if( this.clickActive === null || this.clickActive.kind === this.kind ) {
       this.$emit('setActive', {kind: this.kind, value: this.role})
       } else if( this.clickActive.kind === 'character' ) {
-        const member = this.$store.getters.jinroMembers.filter( (member) => this.clickActive.value.name === member.name)
-        member[0].co = this.role.name
+        this.$emit('setCO', this.clickActive.value, this.role)
       }
     },
     nonActive () {

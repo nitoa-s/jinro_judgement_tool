@@ -17,7 +17,7 @@
         "fortune": "白",
         "medium": "白",
         "info": true,
-        "color": "#00CCFF"
+        "color": "#2C7CFF"
       },
       {
         "id": 3,
@@ -33,7 +33,7 @@
         "fortune": "白",
         "medium": "白",
         "info": false,
-        "color": "green"
+        "color": "#00FF00"
       },
       {
         "id": 5,
@@ -58,13 +58,15 @@
         "name": "賢者",
         "fortune": "白",
         "medium": "白",
-        "info": true
+        "info": true,
+        "color": "#2C7CFF"
       },
       {
         "id": 9,
         "name": "罠師",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 10,
@@ -124,7 +126,8 @@
         "id": 19,
         "name": "女王",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF66CC"
       },
       {
         "id": 20,
@@ -148,13 +151,15 @@
         "id": 23,
         "name": "聖職者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 24,
         "name": "巫女",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 25,
@@ -172,7 +177,8 @@
         "id": 27,
         "name": "医者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 28,
@@ -208,7 +214,8 @@
         "id": 33,
         "name": "プリンセス",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#FF66CC"
       },
       {
         "id": 34,
@@ -220,7 +227,8 @@
         "id": 35,
         "name": "名探偵",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "orange"
       },
       {
         "id": 36,
@@ -244,43 +252,50 @@
         "id": 38,
         "name": "人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 39,
         "name": "大狼",
         "fortune": "白",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 40,
         "name": "賢狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 41,
         "name": "強欲な人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 42,
         "name": "蘇る人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 43,
         "name": "能ある人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 44,
         "name": "饒舌な人狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       },
       {
         "id": 45,
@@ -340,7 +355,8 @@
         "id": 54,
         "name": "一匹狼",
         "fortune": "黒",
-        "medium": "黒"
+        "medium": "黒",
+        "color": "red"
       }
     ]
   },
@@ -352,25 +368,29 @@
         "id": 55,
         "name": "妖狐",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "yellow"
       },
       {
         "id": 56,
         "name": "子狐",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "yellow"
       },
       {
         "id": 57,
         "name": "背徳者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "yellow"
       },
       {
         "id": 58,
         "name": "背信者",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "yellow"
       }
     ]
   },

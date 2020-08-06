@@ -3,14 +3,21 @@
     <div class = 'member'>
       <img :class = '{member_image: true, active: active}' :src = 'imagePath' />
       <p class = 'member_name'> {{ characterData.name }} </p>
+      <img class = 'state_image' v-show = 'state' :src = 'statePath' />
       <p v-if = 'characterData.death' :class = '{retire: characterData.death}'>×</p>
     </div>
-    <p class = 'co_text' v-show = 'characterData.co' > {{ comingOut }}CO</p>
+    <p class = 'co_text' :style = '{color: color}' v-show = 'characterData.co' > {{ comingOut }}CO</p>
   </div>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      color: 'white',
+      state: null
+    }
+  },
   props: [
     'characterData',
     'clickActive'
@@ -18,6 +25,8 @@ export default {
   computed: {
     imagePath () {
       return require(`@/assets/characters/${this.characterData.name}/${this.characterData.imageFileName}`)
+    },
+    statePath () {
     },
     active () {
       return this.clickActive !== null && this.clickActive.kind === 'character' && this.clickActive.value.name === this.characterData.name
@@ -31,10 +40,16 @@ export default {
       if( this.clickActive === null || this.clickActive.kind === 'character') {
         this.$emit('setActive', { kind: 'character', value: this.characterData})
       } else if( this.clickActive.kind == 'role') {
-        this.characterData.co = this.clickActive.value.name
+        this.setCO(this.clickActive.value)
       } else if( this.clickActive.kind === 'info') {
         this.$emit('setInfo', this.characterData)
       }
+    },
+    setCO (role) {
+      this.characterData.co = role.name
+      this.color = role.color
+      console.log(this.role)
+      console.log(this.color)
     },
     nonActive () {
       if( this.clickActive !== null && this.active ) {

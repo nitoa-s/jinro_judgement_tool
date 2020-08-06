@@ -3,11 +3,11 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
+          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
         </div>
       </div>
       <div class = 'role_area'>
-        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' />
+        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' @setCO = 'setCO' />
       </div>
       <input class = 'memo' type = 'text'>
     </div>
@@ -66,6 +66,9 @@ export default {
   methods: {
     setClickActive (clickActive) {
       this.clickActive = clickActive
+    },
+    setCO (character, role) {
+      this.$refs[character.name][0].setCO(role)
     },
     setInfo (characterData) {
       const refName = this.clickActive.value.tableName
