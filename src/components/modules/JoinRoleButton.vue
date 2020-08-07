@@ -2,7 +2,7 @@
   <div class = 'role_button' @click.left = 'join' @click.right.prevent = 'remove'>
     <img class = 'role_image' :src = 'imagePath' />
     <div class = 'role_count'> {{ count }} </div>
-    <div class = 'role_name'> {{ roleData.name }} </div>
+    <div class = 'role_name' :style = '{color: color}'> {{ roleData.name }} </div>
   </div>
 
 </template>
@@ -11,7 +11,8 @@
 export default {
   data () {
     return {
-      count: 0
+      count: 0,
+      color: this.roleData.color ? this.roleData.color : 'white'
     }
   },
   props: [
