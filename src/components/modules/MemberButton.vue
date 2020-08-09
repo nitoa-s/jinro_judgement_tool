@@ -2,8 +2,8 @@
   <div class = 'join_member' @click.left = 'click' @click.right.prevent = 'nonActive' @dblclick =  'deleteCO'>
     <div class = 'member'>
       <img :class = '{member_image: true, active: active}' :src = 'imagePath' />
+      <img class = 'state_image' v-if = 'characterData.state' :src = 'statePath' />
       <p class = 'member_name'> {{ characterData.name }} </p>
-      <img class = 'state_image' v-show = 'state' :src = 'statePath' />
       <p v-if = 'characterData.death' :class = '{retire: characterData.death}'>×</p>
     </div>
     <p class = 'co_text' :style = '{color: color}' v-show = 'characterData.co' > {{ comingOut }}CO</p>
@@ -15,7 +15,6 @@ export default {
   data () {
     return {
       color: 'white',
-      state: null
     }
   },
   props: [
@@ -27,6 +26,7 @@ export default {
       return require(`@/assets/characters/${this.characterData.name}/${this.characterData.imageFileName}`)
     },
     statePath () {
+      return require(`@/assets/${this.characterData.state}.png`)
     },
     active () {
       return this.clickActive !== null && this.clickActive.kind === 'character' && this.clickActive.value.name === this.characterData.name
@@ -48,8 +48,6 @@ export default {
     setCO (role) {
       this.characterData.co = role.name
       this.color = role.color
-      console.log(this.role)
-      console.log(this.color)
     },
     nonActive () {
       if( this.clickActive !== null && this.active ) {
@@ -86,6 +84,15 @@ export default {
 .active {
   outline: solid 2px red;
 }
+
+.state_image {
+  position: absolute;
+  margin: 0;
+  width: 15px;
+  top: 0;
+  right: 0;
+}
+
 .member_name {
   position: absolute;
   margin: 0;

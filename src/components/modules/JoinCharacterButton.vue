@@ -11,7 +11,6 @@ export default {
     return {
       imageIndex: 0,
       isActive: false,
-      self: false
     }
   },
   computed: {
@@ -28,13 +27,15 @@ export default {
         this.imageIndex++
         if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
       }
-      this.$store.dispatch('addMember', { 
+      this.$store.dispatch('addMember', {
         member: {
           id: this.characterData.id,
           name: this.characterData.name,
           imageFileName: this.characterData.image[this.imageIndex],
           co: '',
-          death: false
+          death: false,
+          state: null,
+          info: []
         }
       })
     },

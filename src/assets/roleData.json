@@ -8,7 +8,7 @@
         "name": "市民",
         "fortune": "白",
         "medium": "白",
-        "info": false,
+        "info": 0,
         "color": "white"
       },
       {
@@ -16,7 +16,7 @@
         "name": "占い師",
         "fortune": "白",
         "medium": "白",
-        "info": true,
+        "info": 1,
         "color": "#2C7CFF"
       },
       {
@@ -24,7 +24,7 @@
         "name": "霊能者",
         "fortune": "白",
         "medium": "白",
-        "info": true,
+        "info": 2,
         "color": "orange"
       },
       {
@@ -32,20 +32,22 @@
         "name": "狩人",
         "fortune": "白",
         "medium": "白",
-        "info": false,
+        "info": 0,
         "color": "#00FF00"
       },
       {
         "id": 5,
         "name": "双子",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "info": 0
       },
       {
         "id": 6,
         "name": "怪盗",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "info": 0
       },
       {
         "id": 7,
@@ -58,7 +60,7 @@
         "name": "賢者",
         "fortune": "白",
         "medium": "白",
-        "info": true,
+        "info": 1,
         "color": "#2C7CFF"
       },
       {
@@ -228,6 +230,7 @@
         "name": "名探偵",
         "fortune": "白",
         "medium": "白",
+        "info": 2,
         "color": "orange"
       },
       {
