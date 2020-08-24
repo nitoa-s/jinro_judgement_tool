@@ -8,10 +8,10 @@
       </div>
       <div class = 'member_num_info'>{{ joinMemberNumText }}</div>
       <div class = 'camp_info'>
-        <div class = 'camp_text'>{{ villageCampText }}</div>
-        <div class = 'camp_text'>{{ jinroCampText }}</div>
-        <div class = 'camp_text'>{{ foxCampText }}</div>
-        <div class = 'camp_text'>{{ elseCampText }}</div>
+        <div class = 'camp_text'>{{ campText('村人陣営') }}</div>
+        <div class = 'camp_text'>{{ campText('人狼陣営') }}</div>
+        <div class = 'camp_text'>{{ campText('妖狐陣営') }}</div>
+        <div class = 'camp_text'>{{ campText('その他陣営') }}</div>
       </div>
     </div>
     <router-view/>
@@ -27,22 +27,12 @@ export default {
       const joinMemberNum = this.$store.getters.jinroMembers.length
       let aliveMemberNum = this.$store.getters.jinroMembers.filter( (member) => !member.death).length
       return `生存人数： ${aliveMemberNum}人 / ${joinMemberNum}人`
-    },
-    villageCampText () {
-      const villageCampNum = 0
-      return `村人陣営：${villageCampNum}`
-    },
-    jinroCampText () {
-      const jinroCampNum = 0
-      return `人狼陣営：${jinroCampNum}`
-    },
-    foxCampText () {
-      const foxCampNum = 0
-      return `狐陣営：${foxCampNum}`
-    },
-    elseCampText () {
-      const elseCampNum = 0
-      return `その他陣営：${elseCampNum}`
+    }
+  },
+  methods: {
+    campText (campName) {
+      const campNum = this.$store.getters.jinroRoles.filter( (role) => role.camp === campName ).length
+      return `${campName}：${campNum}`
     }
   }
 }
