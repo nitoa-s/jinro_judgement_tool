@@ -9,11 +9,11 @@ const getters = {
 }
 
 const actions = {
-  addMember({ commit }, { member }) {
-    commit('addMember', member)
+  addMember({ commit }, { characterData }) {
+    commit('addMember', characterData)
   },
-  removeMember({ commit }, { member }) {
-    commit('removeMember', member)
+  removeMember({ commit }, { characterName }) {
+    commit('removeMember', characterName)
   },
   addRole({ commit }, { roleData }) {
     commit('addRole', roleData)
@@ -24,19 +24,20 @@ const actions = {
 }
 
 const mutations = {
-  addMember (state, member) {
-    let exist = false;
-    for(let index = 0; index < state.jinroMembers.length; index++)
-      if( state.jinroMembers[index].name === member.name) {
-        exist = true
-        state.jinroMembers[index].imageFileName = member.imageFileName
-      }
-    if( !exist ) state.jinroMembers.push(member)
+  addMember (state, characterData) {
+    const index = state.jinroMembers.findIndex( (jinroMember) => jinroMember.name === characterData.name )
+    const jinroMember = {
+      name: characterData.name,
+      imageFileName: characterData.imageFileName,
+      co: '',
+      death: false,
+      state: null,
+    }
+    index === -1 ? state.jinroMembers.push(jinroMember) : state.jinroMembers[index].imageFileName = characterData.imageFileName
   },
-  removeMember (state, member) {
-    for(let index = 0; index < state.jinroMembers.length; index++)
-      if( state.jinroMembers[index].name === member)
-        state.jinroMembers.splice(index, 1)
+  removeMember (state, characterName) {
+    const index = state.jinroMembers.findIndex( (jinroMember) => jinroMember.name === characterName )
+    if ( index != -1) state.jinroMembers.splice(index, 1)
   },
   addRole (state, roleData) {
     state.jinroRoles.push(roleData)

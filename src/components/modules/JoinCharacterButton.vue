@@ -28,20 +28,15 @@ export default {
         if( this.imageIndex === this.characterData.image.length ) this.imageIndex = 0
       }
       this.$store.dispatch('addMember', {
-        member: {
-          id: this.characterData.id,
+        characterData: {
           name: this.characterData.name,
-          imageFileName: this.characterData.image[this.imageIndex],
-          co: '',
-          death: false,
-          state: null,
-          info: []
+          imageFileName: this.characterData.image[this.imageIndex]
         }
       })
     },
     remove () {
       this.isActive = false
-      this.$store.dispatch('removeMember', { member: this.characterData.name })
+      this.$store.dispatch('removeMember', { characterName: this.characterData.name })
       this.imageIndex = 0
     }
   },
