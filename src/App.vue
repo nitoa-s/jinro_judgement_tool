@@ -12,6 +12,7 @@
         <div class = 'camp_text'>{{ campText('人狼陣営') }}</div>
         <div class = 'camp_text'>{{ campText('妖狐陣営') }}</div>
         <div class = 'camp_text'>{{ campText('その他陣営') }}</div>
+        <div class = 'camp_text'>{{ roleCount }} </div>
       </div>
     </div>
     <router-view/>
@@ -27,6 +28,10 @@ export default {
       const joinMemberNum = this.$store.getters.jinroMembers.length
       let aliveMemberNum = this.$store.getters.jinroMembers.filter( (member) => !member.death).length
       return `生存人数： ${aliveMemberNum}人 / ${joinMemberNum}人`
+    },
+    roleCount () {
+      const num = this.$store.getters.jinroRoles.length
+      return `合計役職数： ${num}`
     }
   },
   methods: {

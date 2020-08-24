@@ -200,13 +200,15 @@
         "id": 31,
         "name": "占い師の弟子",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#2C7CFF"
       },
       {
         "id": 32,
         "name": "偽占い師",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#2C7CFF"
       },
       {
         "id": 33,
@@ -219,7 +221,8 @@
         "id": 34,
         "name": "饒舌な狩人",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 35,
