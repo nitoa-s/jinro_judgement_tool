@@ -41,10 +41,10 @@ export default {
     }
   },
   created () {
-    const jinroMembers = this.$store.getters.jinroMembers.filter( (member) => member.name === this.characterData.name )
-    if(jinroMembers.length > 0) {
+    const jinroMember = this.$store.getters.jinroMembers.filter( (member) => member.name === this.characterData.name )
+    if(jinroMember.length > 0) {
       this.isActive = true
-      this.imageIndex = this.characterData.image.indexOf(jinroMembers[0].imageFileName)
+      this.imageIndex = this.characterData.image.indexOf(jinroMember[0].imageFileName)
     }
   }
 }
