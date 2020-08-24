@@ -24,8 +24,8 @@ export default {
   name: 'App',
   computed: {
     joinMemberNumText () {
-      const joinMemberNum = 10
-      let aliveMemberNum = 5
+      const joinMemberNum = this.$store.getters.jinroMembers.length
+      let aliveMemberNum = this.$store.getters.jinroMembers.filter( (member) => !member.death).length
       return `生存人数： ${aliveMemberNum}人 / ${joinMemberNum}人`
     },
     villageCampText () {
