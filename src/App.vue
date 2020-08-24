@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <div class = 'head_bar'>
-      <router-link to = '/'> ホーム</router-link>
-      <router-link to = '/characters'>キャラクター設定</router-link>
-      <router-link to = '/roles'>役職設定</router-link>
+      <div class = 'route_path'>
+        <router-link class = 'path_text' to = '/'> ホーム</router-link>
+        <router-link class = 'path_text' to = '/characters'>キャラクター設定</router-link>
+        <router-link class = 'path_text' to = '/roles'>役職設定</router-link>
+      </div>
+      <div class = 'member_num_info'>{{ joinMemberNumText }}</div>
       <div class = 'camp_info'>
         <div class = 'camp_text'>{{ villageCampText }}</div>
         <div class = 'camp_text'>{{ jinroCampText }}</div>
@@ -20,6 +23,11 @@ import joinCharacter from './components/JoinCharacter'
 export default {
   name: 'App',
   computed: {
+    joinMemberNumText () {
+      const joinMemberNum = 10
+      let aliveMemberNum = 5
+      return `生存人数： ${aliveMemberNum}人 / ${joinMemberNum}人`
+    },
     villageCampText () {
       const villageCampNum = 0
       return `村人陣営：${villageCampNum}`
@@ -61,13 +69,15 @@ body {
 .head_bar {
   top: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: rgb(209, 214, 240);
 }
 
+.path_text {
+  margin: 0 5px;
+}
 .camp_info {
   display: flex;
-  margin-left: auto;
 }
 
 .camp_text {
