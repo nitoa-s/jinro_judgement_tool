@@ -1,9 +1,15 @@
 <template>
   <div id="app">
-    <div class = 'head__bar'>
+    <div class = 'head_bar'>
       <router-link to = '/'> ホーム</router-link>
       <router-link to = '/characters'>キャラクター設定</router-link>
       <router-link to = '/roles'>役職設定</router-link>
+      <div class = 'camp_info'>
+        <div class = 'camp_text'>{{ villageCampText }}</div>
+        <div class = 'camp_text'>{{ jinroCampText }}</div>
+        <div class = 'camp_text'>{{ foxCampText }}</div>
+        <div class = 'camp_text'>{{ elseCampText }}</div>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -12,7 +18,25 @@
 <script>
 import joinCharacter from './components/JoinCharacter'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    villageCampText () {
+      const villageCampNum = 0
+      return `村人陣営：${villageCampNum}`
+    },
+    jinroCampText () {
+      const jinroCampNum = 0
+      return `人狼陣営：${jinroCampNum}`
+    },
+    foxCampText () {
+      const foxCampNum = 0
+      return `狐陣営：${foxCampNum}`
+    },
+    elseCampText () {
+      const elseCampNum = 0
+      return `その他陣営：${elseCampNum}`
+    }
+  }
 }
 </script>
 
@@ -34,9 +58,19 @@ body {
   height: 100%;
 }
 
-.head__bar {
+.head_bar {
   top: 0;
-  height: 30px;
+  display: flex;
+  justify-content: flex-start;
   background-color: rgb(209, 214, 240);
+}
+
+.camp_info {
+  display: flex;
+  margin-left: auto;
+}
+
+.camp_text {
+  margin: 0 5px;
 }
 </style>
