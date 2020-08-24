@@ -51,12 +51,18 @@ export default {
       }
     },
     rightClick () {
+      if( this.isResultTable() ) {
+        this.$emit('setActive', null)
+        return
+      }
       if( this.characterData !== null ) {
         if( !this.siro && !this.kuro ) {
           this.siro = true
+          this.$emit('changeInfo', this.rowName, this.characterData, 'white')
         } else if( this.siro ) {
           this.siro = false
           this.kuro = true
+          this.$emit('changeInfo',  this.rowName, this.characterData, 'black')
         } else {
           this.kuro = false
         }

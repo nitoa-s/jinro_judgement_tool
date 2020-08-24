@@ -3,18 +3,18 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
+          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
         </div>
       </div>
       <div class = 'role_area'>
-        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' />
+        <role-button v-for = '(role, index) in roles' :key = 'index' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive' @setCO = 'setCO' />
       </div>
       <input class = 'memo' type = 'text'>
     </div>
     <div class = 'role_info'>
-      <p class = 'title'>役職情報と襲撃結果</p>
+      <p class = 'title'>役職・襲撃情報</p>
       <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
-      <info-table :ref = 'roleName' v-for = 'roleName in roleInfoGroups' :key = 'roleName' :maxDay = 'maxDay' :roleName = 'roleName' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
+      <info-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
     </div>
   </div>
 </template>
@@ -54,10 +54,7 @@ export default {
       return groupedArray
     },
     roleInfoGroups () {
-      const infoGroups = this.roles.map( (role) => {
-        if ( role.info ) return role.name
-      })
-      return infoGroups.filter(Boolean).filter(function (x, i, self) { return self.indexOf(x) === i })
+      return this.roles.filter( (role, index, roles) => role.info && roles.findIndex(e => e.name === role.name) === index)
     },
     maxDay () {
       return this.characters.length === 0 ? 0 : Math.floor((this.characters.length - 1) / 2)
@@ -66,6 +63,9 @@ export default {
   methods: {
     setClickActive (clickActive) {
       this.clickActive = clickActive
+    },
+    setCO (character, role) {
+      this.$refs[character.name][0].setCO(role)
     },
     setInfo (characterData) {
       const refName = this.clickActive.value.tableName
