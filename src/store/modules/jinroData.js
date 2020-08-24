@@ -1,6 +1,7 @@
 const state = {
   jinroMembers: [],
-  jinroRoles: []
+  jinroRoles: [],
+  attackInfo: []
 }
 
 const getters = {
@@ -15,8 +16,8 @@ const actions = {
   removeMember({ commit }, { characterName }) {
     commit('removeMember', characterName)
   },
-  addRole({ commit }, { roleData }) {
-    commit('addRole', roleData)
+  addRole({ commit }, { roleInfo }) {
+    commit('addRole', roleInfo)
   },
   removeRole({ commit }, { roleName }) {
     commit('removeRole', roleName)
@@ -29,7 +30,7 @@ const mutations = {
     const jinroMember = {
       name: characterData.name,
       imageFileName: characterData.imageFileName,
-      co: '',
+      co: null,
       death: false,
       state: null,
     }
@@ -39,15 +40,18 @@ const mutations = {
     const index = state.jinroMembers.findIndex( (jinroMember) => jinroMember.name === characterName )
     if ( index != -1) state.jinroMembers.splice(index, 1)
   },
-  addRole (state, roleData) {
-    state.jinroRoles.push(roleData)
+  addRole (state, roleInfo) {
+    const role = {
+      id: roleInfo.roleData.id,
+      name: roleInfo.roleData.name,
+      color: roleInfo.roleData.color,
+      camp: roleInfo.camp
+    }
+    state.jinroRoles.push(role)
   },
   removeRole (state, roleName) {
-    for(let index = 0; index < state.jinroRoles.length; index++)
-      if( state.jinroRoles[index].name === roleName) {
-        state.jinroRoles.splice(index, 1)
-        break
-      }
+    const index = state.jinroRoles.findIndex( (role) => role.name === roleName )
+    if( index != -1) state.jinroRoles.splice(index, 1)
   }
 }
 export default {
