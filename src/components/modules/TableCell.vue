@@ -1,8 +1,8 @@
 <template>
   <td :class = '{info_cell: true, active: active}' @click.left = 'activeClick' @click.right.prevent = 'nonActive'>
-    <template v-if = 'includeInfo'>
-      <img class = 'cell_image' :src = 'imagePath' />
-      <p class = 'result_text'>{{ resultText }}</p>
+    <template v-if = 'roleInfoData.length > 0'>
+      <img class = 'cell_image' :src = 'imagePath(roleInfoData[0].character)' />
+      <p class = 'result_text'>{{ roleInfoData[0].result }}</p>
     </template>
   </td>
 </template>
@@ -31,28 +31,26 @@ export default {
     active () {
      return this.clickActive !== null && this.clickActive === this.activeData
     },
-    includeInfo () {
-      return this.row.info.some( (infoData) => infoData.day === this.day)
-    },
-    resultText () {
-      const index = this.row.info.findIndex( (infoData) => infoData.day === this.day)
-      return index !== -1 ? this.row.info[index].result : ''
-    },
-    imagePath () {
-      const index = this.row.info.findIndex( (infoData) => infoData.day === this.day)
-      return index !== -1 ? require(`@/assets/characters/${this.row.info[index].character.name}/${this.row.info[index].character.imageFileName}`) : ''
+    roleInfoData () {
+      console.log('更新')
+      if(['襲撃', '処刑'].includes(this.rowName)) {
+
+      } else {
+        return this.row.info.filter( (data) => data.day === this.day)
+      }
     }
   },
   methods: {
+    imagePath (character) {
+      return require(`@/assets/characters/${character.name}/${character.imageFileName}`)
+    },
     activeClick () {
       if( this.clickActive === null || this.clickActive.kind === this.kindValue ) {
         this.$emit('setActive', this.activeData)
       } else if(this.clickActive.kind === 'character') {
-        console.log('test')
         const infoData = {
           day: this.day,
           targetCharacter: this.clickActive.value,
-          result: null,
           roleName: this.rowName
         }
         this.$store.dispatch('setInfo', {infoData: infoData})

@@ -62,11 +62,15 @@ const mutations = {
     const roleInfo = {
       day: infoData.day,
       character: infoData.targetCharacter,
-      result: infoData.result || null
+      result: ''
     }
     const index = state.jinroMembers.findIndex( (member) => member.name === infoData.roleName )
-    if( index != -1 ) state.jinroMembers[index].info.push(roleInfo)
-    console.log(state.jinroMembers[index].info)
+    if( index !== -1) {
+      const infoIndex = state.jinroMembers[index].info.findIndex( (data) => data.day === infoData.day)
+      infoIndex === -1 ? state.jinroMembers[index].info.push(roleInfo) : state.jinroMembers[index].info.splice(infoIndex, 1, roleInfo)
+    }
+  },
+  updateResult(state, infoData) {
   }
 }
 export default {

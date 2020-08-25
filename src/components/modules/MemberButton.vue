@@ -44,7 +44,6 @@ export default {
         const infoData = {
           day: this.clickActive.value.day,
           targetCharacter: this.characterData,
-          result: null,
           roleName: this.clickActive.value.rowName
         }
         this.$store.dispatch('setInfo', { infoData: infoData })
