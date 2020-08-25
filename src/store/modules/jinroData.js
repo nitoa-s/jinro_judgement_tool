@@ -21,6 +21,9 @@ const actions = {
   },
   removeRole({ commit }, { roleName }) {
     commit('removeRole', roleName)
+  },
+  setInfo({ commit }, { infoData }) {
+    commit('setInfo', infoData)
   }
 }
 
@@ -33,6 +36,7 @@ const mutations = {
       co: null,
       death: false,
       state: null,
+      info: []
     }
     index === -1 ? state.jinroMembers.push(jinroMember) : state.jinroMembers[index].imageFileName = characterData.imageFileName
   },
@@ -44,7 +48,8 @@ const mutations = {
     const role = {
       id: roleInfo.roleData.id,
       name: roleInfo.roleData.name,
-      color: roleInfo.roleData.color,
+      info: roleInfo.roleData.info || 0,
+      color: roleInfo.roleData.color || 'white',
       camp: roleInfo.camp
     }
     state.jinroRoles.push(role)
@@ -52,6 +57,16 @@ const mutations = {
   removeRole (state, roleName) {
     const index = state.jinroRoles.findIndex( (role) => role.name === roleName )
     if( index != -1) state.jinroRoles.splice(index, 1)
+  },
+  setInfo (state, infoData) {
+    const roleInfo = {
+      day: infoData.day,
+      character: infoData.targetCharacter,
+      result: infoData.result || null
+    }
+    const index = state.jinroMembers.findIndex( (member) => member.name === infoData.roleName )
+    if( index != -1 ) state.jinroMembers[index].info.push(roleInfo)
+    console.log(state.jinroMembers[index].info)
   }
 }
 export default {

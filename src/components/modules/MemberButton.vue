@@ -6,7 +6,7 @@
       <p class = 'member_name'> {{ characterData.name }} </p>
       <p v-if = 'characterData.death' :class = '{retire: characterData.death}'>×</p>
     </div>
-    <p class = 'co_text'  v-show = 'characterData.co' :style = '{color: coColor}' > {{ coText }}</p>
+    <p class = 'co_text'  v-if = 'characterData.co' :style = '{color: characterData.co.color}' > {{ characterData.co.name }}CO</p>
   </div>
 </template>
 
@@ -32,12 +32,6 @@ export default {
     },
     active () {
       return this.clickActive !== null && this.clickActive === this.activeData
-    },
-    coColor () {
-      return this.characterData.co === null || this.characterData.co.color === undefined ? 'white' : this.characterData.co.color
-    },
-    coText () {
-      return this.characterData.co === null ? '' : `${this.characterData.co.name}CO`
     }
   },
   methods: {
@@ -47,10 +41,16 @@ export default {
       } else if( this.clickActive.kind == 'role') {
         this.setCO(this.clickActive.value)
       } else if( this.clickActive.kind === 'info') {
+        const infoData = {
+          day: this.clickActive.value.day,
+          targetCharacter: this.characterData,
+          result: null,
+          roleName: this.clickActive.value.rowName
+        }
+        this.$store.dispatch('setInfo', { infoData: infoData })
       }
     },
     setCO (role) {
-      console.log(role)
       this.characterData.co = role
     },
     nonActive () {

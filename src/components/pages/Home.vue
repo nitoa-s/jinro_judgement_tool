@@ -13,8 +13,8 @@
     </div>
     <div class = 'role_info'>
       <p class = 'title'>役職・襲撃情報</p>
-      <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
-      <info-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
+      <!-- <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/> -->
+      <role-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></role-table>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
 import memberButton from '@/components/modules/MemberButton'
 import roleButton from '@/components/modules/RoleButton'
 import resultTable from '@/components/modules/ResultTable'
-import infoTable from '@/components/modules/InfoTable'
+import roleTable from '@/components/modules/RoleTable'
 export default {
   data () {
     return {
@@ -41,7 +41,7 @@ export default {
     'member-button': memberButton,
     'role-button': roleButton,
     'result-table': resultTable,
-    'info-table': infoTable
+    'role-table': roleTable
   },
   computed: {
     groupCharacters () {
@@ -107,9 +107,10 @@ export default {
 }
 
 .memo {
-  padding: 10px;
+  margin: 10px 0;
   width: 100%;
   height: 200px;
+  border: double 10px yellowgreen;
 }
 .role_area {
   display: inline;
