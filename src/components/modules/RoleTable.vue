@@ -52,11 +52,35 @@ export default {
     },
     setActive (clickActive) {
       this.$emit('setActive', clickActive)
-    }
+    },
   },
   watch: {
-    rowInfo: () => {
-      
+    //TODO: 呪われの可能性でい同じ人を二回占う可能性を考慮
+    rowInfo (infoData) {
+      if( infoData.length > 0) {
+        const characters = this.$store.getters.jinroMembers
+        characters.forEach((c) => {
+          let characterColor = [0, 0]
+          infoData.forEach((rowInfo) => {
+            if( rowInfo.value.some((data) => data.character.name === c.name && data.result === '白') ) {
+              characterColor[0]++
+            } else if( rowInfo.value.some((data) => data.character.name === c.name && data.result === '黒') ) {
+              characterColor[1]++
+            }
+          })
+          if( characterColor[0] > 0 && characterColor[1] > 0 ) {
+            c.state = 'パンダ'
+          } else if( characterColor[0] === infoData.length ) {
+            c.state = '白'
+          } else if( characterColor[1] === infoData.length ) {
+            c.state = '黒'
+          } else if( characterColor[0] > 0 ) {
+            c.state = '片白'
+          } else if( characterColor[1] > 0 ) {
+            c.state = '片黒'
+          }
+        })
+      }
     }
   }
 }
