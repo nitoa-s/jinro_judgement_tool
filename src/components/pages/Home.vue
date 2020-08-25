@@ -3,7 +3,7 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
+          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
         </div>
       </div>
       <div class = 'role_area'>
@@ -102,7 +102,7 @@ export default {
 
 .member_row_area {
   display: flex;
-  height: 120px;
+  height: 100px;
   margin-bottom: 5px;
 }
 
