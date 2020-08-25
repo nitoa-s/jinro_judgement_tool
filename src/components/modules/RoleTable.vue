@@ -37,6 +37,13 @@ export default {
   computed: {
     tableRows () {
       return this.$store.getters.jinroMembers.filter( (member) => member.co && member.co.name === this.role.name)
+    },
+    rowInfo () {
+      const infoData = []
+      this.tableRows.forEach(element => {
+        infoData.push({ name: element.name, value: element.info})
+      });
+      return infoData
     }
   },
   methods: {
@@ -45,6 +52,11 @@ export default {
     },
     setActive (clickActive) {
       this.$emit('setActive', clickActive)
+    }
+  },
+  watch: {
+    rowInfo: () => {
+      
     }
   }
 }

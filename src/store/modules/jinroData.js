@@ -24,6 +24,9 @@ const actions = {
   },
   setInfo({ commit }, { infoData }) {
     commit('setInfo', infoData)
+  },
+  updateResult({ commit }, { resultData }){
+    commit('updateResult', resultData)
   }
 }
 
@@ -70,7 +73,20 @@ const mutations = {
       infoIndex === -1 ? state.jinroMembers[index].info.push(roleInfo) : state.jinroMembers[index].info.splice(infoIndex, 1, roleInfo)
     }
   },
-  updateResult(state, infoData) {
+  updateResult(state, resultData) {
+    const index = state.jinroMembers.findIndex( (member) => member.name === resultData.roleName )
+    if(index !== -1) {
+      const infoIndex = state.jinroMembers[index].info.findIndex( (data) => data.day === resultData.day)
+      if( infoIndex !== -1) {
+        // computedが反応するように変数作ってspliceしている(代入だと反応しない・・・)
+        const infoData = {
+          day: state.jinroMembers[index].info[infoIndex].day,
+          character: state.jinroMembers[index].info[infoIndex].character,
+          result: resultData.result
+        }
+        state.jinroMembers[index].info.splice(infoIndex, 1, infoData)
+      }
+    }
   }
 }
 export default {

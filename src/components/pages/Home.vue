@@ -11,9 +11,14 @@
       </div>
       <input class = 'memo' type = 'text'>
     </div>
-    <div class = 'role_info'>
-      <p class = 'title'>役職・襲撃情報</p>
+    <div class = 'result_info'>
+      <p class = 'title'>襲撃情報</p>
       <!-- <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/> -->
+      <div class = 'role_info'>
+        <p class = 'title'>役職情報</p>
+        <button @click = "resultClick('白')">白</button>
+        <button @click = "resultClick('黒')">黒</button>
+      </div>
       <role-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></role-table>
     </div>
   </div>
@@ -64,6 +69,16 @@ export default {
     setClickActive (clickActive) {
       this.clickActive = clickActive
     },
+    resultClick (color) {
+      if( this.clickActive && this.clickActive.kind === 'info' && !['襲撃', '処刑'].includes(this.clickActive.value.rowName)) {
+        const resultData = {
+          roleName: this.clickActive.value.rowName,
+          day: this.clickActive.value.day,
+          result: color
+        }
+        this.$store.dispatch('updateResult', { resultData: resultData})
+      }
+    },
     setCO (character, role) {
       this.$refs[character.name][0].setCO(role)
     },
@@ -91,7 +106,7 @@ export default {
   vertical-align: top;
 }
 
-.role_info {
+.result_info {
   display: inline-block;
   margin: 5px 0 0;
   height: 100%;

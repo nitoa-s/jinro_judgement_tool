@@ -32,7 +32,6 @@ export default {
      return this.clickActive !== null && this.clickActive === this.activeData
     },
     roleInfoData () {
-      console.log('更新')
       if(['襲撃', '処刑'].includes(this.rowName)) {
 
       } else {
