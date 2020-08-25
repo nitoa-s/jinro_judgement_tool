@@ -32,8 +32,10 @@ export default {
      return this.clickActive !== null && this.clickActive === this.activeData
     },
     roleInfoData () {
-      if(['襲撃', '処刑'].includes(this.rowName)) {
-
+      if( this.rowName === '襲撃' ) {
+        return this.$store.getters.attackInfo.filter( (data) => data.day === this.day)
+      }else if( this.rowName === '処刑' ) {
+        return this.$store.getters.hangInfo.filter( (data) => data.day === this.day)
       } else {
         return this.row.info.filter( (data) => data.day === this.day)
       }
@@ -52,6 +54,7 @@ export default {
           targetCharacter: this.clickActive.value,
           roleName: this.rowName
         }
+        console.log(this.rowName)
         this.$store.dispatch('setInfo', {infoData: infoData})
       }
     },

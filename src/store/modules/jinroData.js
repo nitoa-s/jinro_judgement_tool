@@ -1,12 +1,15 @@
 const state = {
   jinroMembers: [],
   jinroRoles: [],
-  attackInfo: []
+  attackInfo: [],
+  hangInfo: []
 }
 
 const getters = {
   jinroMembers: state => state.jinroMembers,
-  jinroRoles: state => state.jinroRoles
+  jinroRoles: state => state.jinroRoles,
+  attackInfo: state => state.attackInfo,
+  hangInfo: state => state.hangInfo
 }
 
 const actions = {
@@ -67,10 +70,34 @@ const mutations = {
       character: infoData.targetCharacter,
       result: ''
     }
-    const index = state.jinroMembers.findIndex( (member) => member.name === infoData.roleName )
-    if( index !== -1) {
-      const infoIndex = state.jinroMembers[index].info.findIndex( (data) => data.day === infoData.day)
-      infoIndex === -1 ? state.jinroMembers[index].info.push(roleInfo) : state.jinroMembers[index].info.splice(infoIndex, 1, roleInfo)
+    if(infoData.roleName === '襲撃') {
+      const index = state.attackInfo.findIndex( (data) => data.day === infoData.day)
+      if( index === -1 ) {
+        state.attackInfo.push(roleInfo)
+      } else {
+        const characterIndex = state.jinroMembers.findIndex( (member) => member.name === state.attackInfo[index].character.name)
+        if( characterIndex !== -1 ) state.jinroMembers[characterIndex].death = false
+        state.attackInfo.splice(index, 1, roleInfo)
+      }
+      const i = state.jinroMembers.findIndex( (member) => member.name === infoData.targetCharacter.name)
+      if( i !== -1 ) state.jinroMembers[i].death = true
+    } else if( infoData.roleName === '処刑') {
+      const index = state.hangInfo.findIndex( (data) => data.day === infoData.day)
+      if( index === -1 ) {
+        state.hangInfo.push(roleInfo)
+      } else {
+        const characterIndex = state.jinroMembers.findIndex( (member) => member.name === state.hangInfo[index].character.name)
+        if( characterIndex !== -1 ) state.jinroMembers[characterIndex].death = false
+        state.hangInfo.splice(index, 1, roleInfo)
+      }
+      const i = state.jinroMembers.findIndex( (member) => member.name === infoData.targetCharacter.name)
+      if( i !== -1 ) state.jinroMembers[i].death = true
+    }else {
+      const index = state.jinroMembers.findIndex( (member) => member.name === infoData.roleName )
+      if( index !== -1) {
+        const infoIndex = state.jinroMembers[index].info.findIndex( (data) => data.day === infoData.day)
+        infoIndex === -1 ? state.jinroMembers[index].info.push(roleInfo) : state.jinroMembers[index].info.splice(infoIndex, 1, roleInfo)
+      }
     }
   },
   updateResult(state, resultData) {

@@ -13,7 +13,7 @@
     </div>
     <div class = 'result_info'>
       <p class = 'title'>襲撃情報</p>
-      <!-- <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/> -->
+      <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
       <div class = 'role_info'>
         <p class = 'title'>役職情報</p>
         <button @click = "resultClick('白')">白</button>
