@@ -77,6 +77,7 @@ export default {
           result: color
         }
         this.$store.dispatch('updateResult', { resultData: resultData})
+        this.clickActive = null
       }
     },
     setCO (character, role) {
