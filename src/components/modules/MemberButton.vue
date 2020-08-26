@@ -6,22 +6,24 @@
       <p class = 'member_name'> {{ characterData.name }} </p>
       <p v-if = 'characterData.death' :class = '{retire: characterData.death}'>×</p>
     </div>
-    <p class = 'co_text' :style = '{color: color}' v-show = 'characterData.co' > {{ comingOut }}CO</p>
+    <p class = 'co_text'  v-if = 'characterData.co' :style = '{color: characterData.co.color}' > {{ characterData.co.name }}CO</p>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      color: 'white',
-    }
-  },
   props: [
     'characterData',
     'clickActive'
   ],
   computed: {
+    kindValue: () => 'character',
+    activeData () {
+      return {
+        kind: this.kindValue,
+        value: this.characterData
+      }
+    },
     imagePath () {
       return require(`@/assets/characters/${this.characterData.name}/${this.characterData.imageFileName}`)
     },
@@ -29,25 +31,26 @@ export default {
       return require(`@/assets/${this.characterData.state}.png`)
     },
     active () {
-      return this.clickActive !== null && this.clickActive.kind === 'character' && this.clickActive.value.name === this.characterData.name
-    },
-    comingOut () {
-      return  this.$store.getters.jinroMembers.filter( (member) => this.characterData.name === member.name)[0].co
+      return this.clickActive !== null && this.clickActive === this.activeData
     }
   },
   methods: {
     click () {
-      if( this.clickActive === null || this.clickActive.kind === 'character') {
-        this.$emit('setActive', { kind: 'character', value: this.characterData})
+      if( this.clickActive === null || this.clickActive.kind === this.kindValue) {
+        this.$emit('setActive', this.activeData)
       } else if( this.clickActive.kind == 'role') {
         this.setCO(this.clickActive.value)
       } else if( this.clickActive.kind === 'info') {
-        this.$emit('setInfo', this.characterData)
+        const infoData = {
+          day: this.clickActive.value.day,
+          targetCharacter: this.characterData,
+          roleName: this.clickActive.value.rowName
+        }
+        this.$store.dispatch('setInfo', { infoData: infoData })
       }
     },
     setCO (role) {
-      this.characterData.co = role.name
-      this.color = role.color
+      this.characterData.co = role
     },
     nonActive () {
       if( this.clickActive !== null && this.active ) {
@@ -55,7 +58,7 @@ export default {
       }
     },
     deleteCO () {
-      this.characterData.co = ''
+      this.characterData.co = null
     }
   }
 }
@@ -105,11 +108,9 @@ export default {
   pointer-events: none;
 }
 .co_text {
-  --color: white;
   margin: 0;
   font-size: 13px;
   font-weight: 800;
-  color: var(--color)
 }
 
 .retire {

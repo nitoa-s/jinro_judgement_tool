@@ -1,85 +1,65 @@
 <template>
-  <td :class = '{info_cell: true, active: active}' @click.left = 'click' @click.right.prevent = 'rightClick'>
-    <img class = 'cell_image' v-if = 'characterData' :src = 'imagePath()' />
-    <p class = 'result_text'>{{ resultText }}</p>
+  <td :class = '{info_cell: true, active: active}' @click.left = 'activeClick' @click.right.prevent = 'nonActive'>
+    <template v-if = 'roleInfoData.length > 0'>
+      <img class = 'cell_image' :src = 'imagePath(roleInfoData[0].character)' />
+      <p class = 'result_text'>{{ roleInfoData[0].result }}</p>
+    </template>
   </td>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      kind: 'info',
-      siro: false,
-      kuro: false,
-      roleName: null,
-      characterData: null,
-    }
-  },
   props: [
     'clickActive',
-    'tableName',
-    'rowName',
-    'columnIndex'
+    'row',
+    'day'
   ],
   computed: {
-    active () {
-      return this.clickActive !== null && this.clickActive.kind === this.kind && this.clickActive.value.rowName === this.rowName && this.clickActive.value.columnIndex === this.columnIndex
+    kindValue: () => 'info',
+    rowName () {
+      return typeof this.row === 'string' ? this.row : this.row.name
     },
-    resultText () {
-      if( this.roleName !== null ) return this.roleName
-      if( this.siro ) return '白'
-      if( this.kuro ) return '黒'
+    activeData () {
+      return {
+        kind: this.kindValue,
+        value: {
+          rowName: this.rowName,
+          day: this.day
+        }
+      }
+    },
+    active () {
+     return this.clickActive !== null && this.clickActive === this.activeData
+    },
+    roleInfoData () {
+      if( this.rowName === '襲撃' ) {
+        return this.$store.getters.attackInfo.filter( (data) => data.day === this.day)
+      }else if( this.rowName === '処刑' ) {
+        return this.$store.getters.hangInfo.filter( (data) => data.day === this.day)
+      } else {
+        return this.row.info.filter( (data) => data.day === this.day)
+      }
     }
   },
   methods: {
-    imagePath () {
-      return require(`@/assets/characters/${this.characterData.name}/${this.characterData.imageFileName}`)
+    imagePath (character) {
+      return require(`@/assets/characters/${character.name}/${character.imageFileName}`)
     },
-    click () {
-      if( this.clickActive === null || this.clickActive.kind === 'info') {
-        this.$emit('setActive', {
-          kind: this.kind,
-          value: {
-            tableName: this.tableName,
-            rowName: this.rowName,
-            columnIndex: this.columnIndex
-          }
-        })
-      } else if( this.clickActive.kind === 'character' ) {
-        this.setCharacterData(this.clickActive.value)
-      }
-    },
-    rightClick () {
-      if( this.isResultTable() ) {
-        this.$emit('setActive', null)
-        return
-      }
-      if( this.characterData !== null ) {
-        if( !this.siro && !this.kuro ) {
-          this.siro = true
-          this.$emit('changeInfo', this.rowName, this.characterData, 'white')
-        } else if( this.siro ) {
-          this.siro = false
-          this.kuro = true
-          this.$emit('changeInfo',  this.rowName, this.characterData, 'black')
-        } else {
-          this.kuro = false
+    activeClick () {
+      if( this.clickActive === null || this.clickActive.kind === this.kindValue ) {
+        this.$emit('setActive', this.activeData)
+      } else if(this.clickActive.kind === 'character') {
+        const infoData = {
+          day: this.day,
+          targetCharacter: this.clickActive.value,
+          roleName: this.rowName
         }
-      }
-      if( this.clickActive !== null && this.active ) {
-        this.$emit('setActive', null)
+        console.log(this.rowName)
+        this.$store.dispatch('setInfo', {infoData: infoData})
       }
     },
-    setCharacterData (characterData) {
-      if( this.characterData && this.isResultTable() && this.characterData.death )
-        this.characterData.death = false
-      this.characterData = characterData
-      if ( this.isResultTable() )
-        this.characterData.death = true
-    },
-    isResultTable () {
-      return ['襲撃', '処刑'].includes(this.rowName)
+    nonActive () {
+      this.$emit('setActive', null)
     }
   }
 }

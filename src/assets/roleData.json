@@ -8,7 +8,6 @@
         "name": "市民",
         "fortune": "白",
         "medium": "白",
-        "info": 0,
         "color": "white"
       },
       {
@@ -32,22 +31,19 @@
         "name": "狩人",
         "fortune": "白",
         "medium": "白",
-        "info": 0,
         "color": "#00FF00"
       },
       {
         "id": 5,
         "name": "双子",
         "fortune": "白",
-        "medium": "白",
-        "info": 0
+        "medium": "白"
       },
       {
         "id": 6,
         "name": "怪盗",
         "fortune": "白",
-        "medium": "白",
-        "info": 0
+        "medium": "白"
       },
       {
         "id": 7,
@@ -204,13 +200,15 @@
         "id": 31,
         "name": "占い師の弟子",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#2C7CFF"
       },
       {
         "id": 32,
         "name": "偽占い師",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#2C7CFF"
       },
       {
         "id": 33,
@@ -223,7 +221,8 @@
         "id": 34,
         "name": "饒舌な狩人",
         "fortune": "白",
-        "medium": "白"
+        "medium": "白",
+        "color": "#00FF00"
       },
       {
         "id": 35,

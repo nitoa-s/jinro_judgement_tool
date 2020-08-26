@@ -3,7 +3,7 @@
     <div class = 'jinro_info'>
       <div class = 'join_member_area'>
         <div class = 'member_row_area' v-for = '(characterRow, index) in groupCharacters' :key = 'index'>
-          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive' @setInfo = 'setInfo' />
+          <member-button :ref = 'character.name' v-for = 'character in characterRow' :key = 'character.id' :characterData = 'character' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
         </div>
       </div>
       <div class = 'role_area'>
@@ -11,10 +11,15 @@
       </div>
       <input class = 'memo' type = 'text'>
     </div>
-    <div class = 'role_info'>
-      <p class = 'title'>役職・襲撃情報</p>
+    <div class = 'result_info'>
+      <p class = 'title'>襲撃情報</p>
       <result-table ref = 'result' :maxDay = 'maxDay' :clickActive = 'clickActive' @setActive = 'setClickActive'/>
-      <info-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></info-table>
+      <div class = 'role_info'>
+        <p class = 'title'>役職情報</p>
+        <button @click = "resultClick('白')">白</button>
+        <button @click = "resultClick('黒')">黒</button>
+      </div>
+      <role-table :ref = 'role.name' v-for = 'role in roleInfoGroups' :key = 'role.name' :maxDay = 'maxDay' :role = 'role' :clickActive = 'clickActive' @setActive = 'setClickActive'></role-table>
     </div>
   </div>
 </template>
@@ -23,7 +28,7 @@
 import memberButton from '@/components/modules/MemberButton'
 import roleButton from '@/components/modules/RoleButton'
 import resultTable from '@/components/modules/ResultTable'
-import infoTable from '@/components/modules/InfoTable'
+import roleTable from '@/components/modules/RoleTable'
 export default {
   data () {
     return {
@@ -41,7 +46,7 @@ export default {
     'member-button': memberButton,
     'role-button': roleButton,
     'result-table': resultTable,
-    'info-table': infoTable
+    'role-table': roleTable
   },
   computed: {
     groupCharacters () {
@@ -63,6 +68,17 @@ export default {
   methods: {
     setClickActive (clickActive) {
       this.clickActive = clickActive
+    },
+    resultClick (color) {
+      if( this.clickActive && this.clickActive.kind === 'info' && !['襲撃', '処刑'].includes(this.clickActive.value.rowName)) {
+        const resultData = {
+          roleName: this.clickActive.value.rowName,
+          day: this.clickActive.value.day,
+          result: color
+        }
+        this.$store.dispatch('updateResult', { resultData: resultData})
+        this.clickActive = null
+      }
     },
     setCO (character, role) {
       this.$refs[character.name][0].setCO(role)
@@ -91,7 +107,7 @@ export default {
   vertical-align: top;
 }
 
-.role_info {
+.result_info {
   display: inline-block;
   margin: 5px 0 0;
   height: 100%;
@@ -102,14 +118,15 @@ export default {
 
 .member_row_area {
   display: flex;
-  height: 120px;
+  height: 100px;
   margin-bottom: 5px;
 }
 
 .memo {
-  padding: 10px;
+  margin: 10px 0;
   width: 100%;
   height: 200px;
+  border: double 10px yellowgreen;
 }
 .role_area {
   display: inline;
